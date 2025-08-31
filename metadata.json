@@ -1,0 +1,5 @@
+{
+  "name": "MakuluLinux AI Agent Coder",
+  "description": "An AI-powered application that uses a multi-agent approach to understand complex coding tasks, generate the necessary files, and provide a live preview. Users can edit the generated code and export the entire project as a zip file.",
+  "requestFramePermissions": []
+}
