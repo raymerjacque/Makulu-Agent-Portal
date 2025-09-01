@@ -5,6 +5,39 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Agent Coder</title>
+    <script>
+      // --- Cache and Storage Management ---
+      (function() {
+        // To force all users to get a fresh version of the site, ask the AI to "bump the application version".
+        const LATEST_APP_VERSION = '2024.08.01.1'; // <-- The Version Number
+        const DB_NAME = 'AI_Agent_Coder_DB'; // The name of our IndexedDB
+
+        try {
+          const currentVersion = localStorage.getItem('appVersion');
+
+          if (currentVersion !== LATEST_APP_VERSION) {
+            console.log(`New application version detected (${LATEST_APP_VERSION}). Clearing all storage.`);
+            
+            // 1. Clear Local and Session Storage
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // 2. Clear IndexedDB
+            if (window.indexedDB) {
+                console.log(`Deleting IndexedDB database: ${DB_NAME}`);
+                window.indexedDB.deleteDatabase(DB_NAME);
+            }
+            
+            // 3. Set the new version so this script doesn't run again until the next update.
+            localStorage.setItem('appVersion', LATEST_APP_VERSION);
+            console.log('Storage cleared and new version set.');
+
+          }
+        } catch (e) {
+          console.error('Could not access or modify storage for cache management.', e);
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -51,7 +84,15 @@
 </head>
   <body class="bg-gray-900 text-white">
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-    <script type="module" src="/dist/main.js"></script>
-  </body>
+    <script type="module" src="/index.tsx?v=2024.08.01.5"></script>
+    <!-- 
+      DEVELOPER NOTE:
+      DO NOT DELETE THE SCRIPT TAG BELOW.
+      It is used by an external process.
+      The version number (`?v=...`) MUST be updated to match the LATEST_APP_VERSION 
+      at the top of this file whenever the application is version-bumped.
+    -->
+    <script type="module" src="/dist/main.js?v=2024.08.01.5"></script>
+  <script type="module" src="/index.tsx?v=2024.08.01.5"></script>
+</body>
 </html>
