@@ -1,9 +1,9 @@
 // index.tsx
-import React19 from "react";
+import React20 from "react";
 import ReactDOM from "react-dom/client";
 
 // App.tsx
-import { useState as useState16, useCallback as useCallback3, useEffect as useEffect14, useRef as useRef10, useMemo as useMemo3 } from "react";
+import { useState as useState17, useCallback as useCallback4, useEffect as useEffect15, useRef as useRef11, useMemo as useMemo3 } from "react";
 
 // components/AssistantPanel.tsx
 import { useState, useRef, useEffect } from "react";
@@ -36,6 +36,7 @@ var CodeIcon = ({ className }) => /* @__PURE__ */ jsxs("svg", { xmlns: "http://w
   /* @__PURE__ */ jsx("polyline", { points: "16 18 22 12 16 6" }),
   /* @__PURE__ */ jsx("polyline", { points: "8 6 2 12 8 18" })
 ] });
+var PlayIcon = ({ className }) => /* @__PURE__ */ jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className, children: /* @__PURE__ */ jsx("polygon", { points: "5 3 19 12 5 21 5 3" }) });
 var PauseIcon = ({ className }) => /* @__PURE__ */ jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className, children: [
   /* @__PURE__ */ jsx("rect", { x: "6", y: "4", width: "4", height: "16" }),
   /* @__PURE__ */ jsx("rect", { x: "14", y: "4", width: "4", height: "16" })
@@ -237,6 +238,12 @@ var ImageIcon = ({ className }) => /* @__PURE__ */ jsxs("svg", { xmlns: "http://
   /* @__PURE__ */ jsx("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }),
   /* @__PURE__ */ jsx("circle", { cx: "8.5", cy: "8.5", r: "1.5" }),
   /* @__PURE__ */ jsx("polyline", { points: "21 15 16 10 5 21" })
+] });
+var LayoutDashboardIcon = ({ className }) => /* @__PURE__ */ jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className, children: [
+  /* @__PURE__ */ jsx("rect", { width: "7", height: "9", x: "3", y: "3", rx: "1" }),
+  /* @__PURE__ */ jsx("rect", { width: "7", height: "5", x: "14", y: "3", rx: "1" }),
+  /* @__PURE__ */ jsx("rect", { width: "7", height: "9", x: "3", y: "15", rx: "1" }),
+  /* @__PURE__ */ jsx("rect", { width: "7", height: "5", x: "14", y: "12", rx: "1" })
 ] });
 
 // constants.ts
@@ -1339,6 +1346,7 @@ var ModeSwitcher = ({ mode, setMode, disabled, settings }) => {
   const isChatLocked = settings.tier1.chatMode === "locked";
   const isImageLocked = settings.tier1.imageMode === "locked";
   const isCanvasLocked = settings.tier1.canvasMode === "locked";
+  const isBuilderLocked = settings.tier1.builderMode === "locked";
   return /* @__PURE__ */ jsxs5("div", { className: `flex items-center bg-gray-900/50 rounded-lg p-1 space-x-1`, children: [
     /* @__PURE__ */ jsx6(Tooltip, { text: LOCKED_FEATURE_MESSAGE, isLocked: isCoderLocked, children: /* @__PURE__ */ jsxs5(
       "button",
@@ -1397,6 +1405,18 @@ var ModeSwitcher = ({ mode, setMode, disabled, settings }) => {
         children: [
           /* @__PURE__ */ jsx6(CanvasIcon, { className: "w-4 h-4" }),
           /* @__PURE__ */ jsx6("span", { className: "hidden sm:inline", children: "Canvas" })
+        ]
+      }
+    ) }),
+    /* @__PURE__ */ jsx6(Tooltip, { text: LOCKED_FEATURE_MESSAGE, isLocked: isBuilderLocked, children: /* @__PURE__ */ jsxs5(
+      "button",
+      {
+        onClick: () => !disabled && !isBuilderLocked && setMode("builder"),
+        "aria-disabled": disabled || isBuilderLocked,
+        className: `flex items-center gap-2 px-3 py-1 text-sm rounded-md transition-all ${mode === "builder" ? "bg-indigo-600 text-white shadow" : "text-gray-300 hover:bg-gray-700/50"} ${disabled || isBuilderLocked ? "opacity-50 cursor-not-allowed" : ""} ${isBuilderLocked ? "pointer-events-none" : ""}`,
+        children: [
+          /* @__PURE__ */ jsx6(SitemapIcon, { className: "w-4 h-4" }),
+          /* @__PURE__ */ jsx6("span", { className: "hidden sm:inline", children: "Builder" })
         ]
       }
     ) })
@@ -2537,6 +2557,10 @@ var AboutModal = ({ isOpen, onClose }) => {
               /* @__PURE__ */ jsxs15("div", { className: "text-center font-semibold mt-4", children: [
                 /* @__PURE__ */ jsx17("p", { children: "Made by MakuluLinux, Coded by J.M.Raymer" }),
                 /* @__PURE__ */ jsx17("p", { className: "text-xs text-gray-400 mt-2", children: "Powered by A.I Models via Pollinations / Gemini / OpenAI / MakuluLinux" })
+              ] }),
+              /* @__PURE__ */ jsxs15("div", { className: "flex justify-center gap-4 pt-4", children: [
+                /* @__PURE__ */ jsx17("a", { href: "https://discord.gg/Vw9aPfdSu9", target: "_blank", rel: "noopener noreferrer", className: "px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors text-sm", children: "Join our Discord" }),
+                /* @__PURE__ */ jsx17("a", { href: "https://www.youtube.com/@makulu.online/videos", target: "_blank", rel: "noopener noreferrer", className: "px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-600 text-white font-semibold transition-colors text-sm", children: "Visit our YouTube" })
               ] })
             ] }),
             /* @__PURE__ */ jsx17("div", { className: "flex justify-center", children: /* @__PURE__ */ jsx17(
@@ -2817,6 +2841,33 @@ var TutorialModal = ({ isOpen, onClose }) => {
                       /* @__PURE__ */ jsx18("strong", { children: "Finalizer-Agent:" }),
                       " Combines your original prompt with all the enhancements from other agents to create the final, master prompt."
                     ] })
+                  ] }),
+                  /* @__PURE__ */ jsx18("h5", { className: "font-semibold text-gray-200 mt-4 mb-2", children: "Builder Mode Agents" }),
+                  /* @__PURE__ */ jsxs16("ul", { className: "list-disc list-inside space-y-3", children: [
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Workflow Input/Output:" }),
+                      " The start and end points of your workflow."
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Writer & Coder Agents:" }),
+                      " The same powerful agents from other modes, available for focused tasks."
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Image Generator:" }),
+                      " Takes a text prompt and generates an image, outputting its data URL for use in other nodes or for viewing in the output."
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Data Extractor:" }),
+                      " A powerful tool that can parse unstructured text (like an email or article) and pull out structured information based on a JSON schema you provide."
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Conditional Node:" }),
+                      ` Adds branching logic to your workflows. It evaluates a condition (e.g., "Does the input contain the word 'urgent'?") and sends the data down a "true" or "false" path, allowing for different actions based on the input.`
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Project Builder Node:" }),
+                      " The most powerful output node. It takes a high-level description and generates a complete, multi-file project structure directly into the Editor Panel workspace."
+                    ] })
                   ] })
                 ] })
               ] }),
@@ -2896,6 +2947,52 @@ var TutorialModal = ({ isOpen, onClose }) => {
                     " and the ",
                     /* @__PURE__ */ jsx18("strong", { children: "AI Assistant" }),
                     " chat. You can directly edit text in the editor, or use the AI to make changes by chatting with it or using the powerful right-click context menu on selected text."
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxs16(SubSection, { title: "Builder Mode", children: [
+                  /* @__PURE__ */ jsxs16("p", { children: [
+                    /* @__PURE__ */ jsx18("strong", { children: "Purpose:" }),
+                    " A powerful visual programming environment for creating custom, multi-step AI workflows. You can chain different agents together to perform complex tasks that a single prompt could not handle, from generating structured data to building entire projects from scratch."
+                  ] }),
+                  /* @__PURE__ */ jsx18("p", { children: /* @__PURE__ */ jsx18("strong", { children: "Workflow:" }) }),
+                  /* @__PURE__ */ jsxs16("ul", { className: "list-disc list-inside space-y-2", children: [
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      "Drag agents from the ",
+                      /* @__PURE__ */ jsx18("strong", { children: "Agent Palette" }),
+                      " on the left onto the canvas."
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      "Select a node to configure it in the ",
+                      /* @__PURE__ */ jsx18("strong", { children: "Properties" }),
+                      " panel on the right. Give it specific instructions or, for input/output nodes, define its data."
+                    ] }),
+                    /* @__PURE__ */ jsx18("li", { children: "Connect nodes by dragging from the purple output handle (right side) of one node to the cyan input handle (left side) of another. Data flows along these connections." }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      "The new ",
+                      /* @__PURE__ */ jsx18("strong", { children: "Conditional Node" }),
+                      ' allows you to create branching logic, routing the workflow down a "true" or "false" path based on a condition you define.'
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      "Click ",
+                      /* @__PURE__ */ jsx18("strong", { children: "Run" }),
+                      " to execute your workflow from start to finish. You can see the status of each node (running, completed, failed) on the canvas."
+                    ] })
+                  ] }),
+                  /* @__PURE__ */ jsx18("p", { className: "font-semibold text-gray-200 mt-3", children: "Getting Your Output:" }),
+                  /* @__PURE__ */ jsx18("p", { children: "The Builder's output is not just text in a window; it's integrated with the rest of the application. You have two primary ways to get your results:" }),
+                  /* @__PURE__ */ jsxs16("ul", { className: "list-disc list-inside space-y-2", children: [
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Workflow Output Node:" }),
+                      " Use this node to see a temporary result. Anything piped into this node will appear in the draggable ",
+                      /* @__PURE__ */ jsx18("strong", { children: "Results Workspace" }),
+                      " at the bottom of the screen. This is great for debugging or viewing intermediate steps."
+                    ] }),
+                    /* @__PURE__ */ jsxs16("li", { children: [
+                      /* @__PURE__ */ jsx18("strong", { children: "Project Builder Node:" }),
+                      " This is the most powerful output. Give it a high-level description of a project (e.g., 'A simple to-do list app'). When the workflow runs, it will generate a complete file structure with code directly in the ",
+                      /* @__PURE__ */ jsx18("strong", { children: "Editor Panel workspace" }),
+                      ", just as if the Coder Mode agents had built it. This allows you to build complete, multi-file projects using your custom workflows, which you can then edit, preview, and download."
+                    ] })
                   ] })
                 ] })
               ] }),
@@ -3535,7 +3632,11 @@ var AudioMode = ({ chatHistory, onSendMessage, isThinking, thinkingLogs, elapsed
   };
   return /* @__PURE__ */ jsxs21("div", { className: "relative flex flex-col h-full bg-gray-900", children: [
     chatHistory.length === 0 && !isThinking && /* @__PURE__ */ jsxs21("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl p-4 text-center text-gray-400 animate-fade-in pointer-events-none", style: { top: "20%" }, children: [
-      /* @__PURE__ */ jsx23("h2", { className: "text-2xl font-bold text-white mb-4", children: "Welcome to the MakuluLinux AI Agent Portal." }),
+      /* @__PURE__ */ jsxs21("h2", { className: "text-2xl font-bold text-white mb-4", children: [
+        "Welcome to the ",
+        /* @__PURE__ */ jsx23("a", { href: "https://makululinux.com", target: "_blank", rel: "noopener noreferrer", className: "text-indigo-400 hover:underline pointer-events-auto", children: "MakuluLinux" }),
+        " AI Agent Portal."
+      ] }),
       /* @__PURE__ */ jsx23("p", { className: "text-md", children: "You are currently in Chat Mode, you can simply start chatting to the AI below, or switch to other modes above, This whole portal uses Multi Agent technology to provide you with superior AI Excellence well above the industry standard, Guaranteed to make your life easier and give you the best possible end result. At MakuluLinux we push boundaries and this Portal is just another stepping stone on that journey" }),
       /* @__PURE__ */ jsx23("p", { className: "text-md mt-4", children: "P.S:  Be sure to click on the 'Tutorial Guide' button in the top right corner, it gives you a detailed breakdown of this application and how the Agent Technology works." }),
       /* @__PURE__ */ jsx23("p", { className: "text-md mt-4", children: "#############." }),
@@ -3832,6 +3933,9 @@ var ImageMode = ({ onGenerate, onSurpriseMe, prompt, setPrompt, generatedImages,
   ] });
 };
 
+// components/BuilderMode.tsx
+import { useState as useState16, useRef as useRef10, useEffect as useEffect14, useCallback as useCallback3 } from "react";
+
 // services/blueprints.ts
 var viteReactTsBlueprint = {
   id: "vite-react-ts",
@@ -4036,10 +4140,6 @@ var MODELS = ["openai", "gemini", "gpt-5-nano"];
 var MAX_PROMPT_LENGTH = 32500;
 var RETRY_DELAY_MS = 6e4;
 var MAX_ATTEMPTS = 10;
-var DIGEN_API_URL = "https://makulu.online:3008";
-var DIGEN_API_PASSWORD = "cookies";
-var DIGEN_POLL_INTERVAL_MS = 5e3;
-var DIGEN_POLL_TIMEOUT_MS = 3e5;
 var ELECTRA_API_URL = "https://makulu.online:2006/api/ask";
 var ELECTRA_MAX_RETRIES = 10;
 var isInFallbackMode = false;
@@ -4050,7 +4150,7 @@ var lastPrimaryApiCallStartTime = 0;
 var PRIMARY_API_INTERVAL_MS = 3e3;
 var lastImageApiCallTime = 0;
 var IMAGE_API_INTERVAL_MS = 5e3;
-var _callPrimaryApiWithRetries = (prompt, log, onRequest, onResponse) => {
+var _callPollinationsApi = (prompt, log, onRequest, onResponse) => {
   const requestFn = async () => {
     let lastError = null;
     let truncatedPrompt = prompt;
@@ -4076,50 +4176,50 @@ var _callPrimaryApiWithRetries = (prompt, log, onRequest, onResponse) => {
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
       for (const model of MODELS) {
         try {
-          log?.(`[API Request - Primary] Calling generation API with model: ${model} (Attempt ${attempt})...`);
+          log?.(`[API Request - Pollinations] Calling generation API with model: ${model} (Attempt ${attempt})...`);
           const fullUrl = `${POLLINATIONS_API_URL}${encodeURIComponent(truncatedPrompt)}${API_PARAMS}&model=${model}&seed=${Math.floor(Math.random() * 1e6)}`;
           const response = await fetch(fullUrl);
           if (!response.ok) {
             const errorBody = await response.text();
-            log?.(`[API Error - Primary] Model ${model} failed with status ${response.status}: ${errorBody}`);
+            log?.(`[API Error - Pollinations] Model ${model} failed with status ${response.status}: ${errorBody}`);
             throw new Error(`API request failed for model ${model} with status ${response.status}`);
           }
           fireResponse();
           const text = await response.text();
-          log?.(`[API Response - Primary] Raw text from '${model}': ${text.substring(0, 200)}...`);
+          log?.(`[API Response - Pollinations] Raw text from '${model}': ${text.substring(0, 200)}...`);
           const codeBlockRegex = /```(?:[a-zA-Z]+)?\s*([\s\S]*?)\s*```/;
           const match = text.match(codeBlockRegex);
           if (match && match[1]) {
-            log?.(`[API Parser - Primary] Extracted content from code block.`);
+            log?.(`[API Parser - Pollinations] Extracted content from code block.`);
             return match[1].trim();
           }
           try {
             const jsonResponse = JSON.parse(text);
             const responseText = jsonResponse.text || jsonResponse.completion;
             if (responseText && typeof responseText === "string") {
-              log?.(`[API Parser - Primary] Extracted content from JSON response field.`);
+              log?.(`[API Parser - Pollinations] Extracted content from JSON response field.`);
               return responseText.trim();
             }
             if (typeof jsonResponse === "object" && jsonResponse !== null) {
-              log?.(`[API Parser - Primary] Parsed raw text as JSON object, returning stringified version.`);
+              log?.(`[API Parser - Pollinations] Parsed raw text as JSON object, returning stringified version.`);
               return JSON.stringify(jsonResponse);
             }
           } catch (e) {
           }
-          log?.(`[API Parser - Primary] No code block or known JSON structure found. Returning raw text as fallback.`);
+          log?.(`[API Parser - Pollinations] No code block or known JSON structure found. Returning raw text as fallback.`);
           return text.trim();
         } catch (error) {
           lastError = error;
-          log?.(`[API Error - Primary on model ${model}, attempt ${attempt}] ${lastError.message}`);
+          log?.(`[API Error - Pollinations on model ${model}, attempt ${attempt}] ${lastError.message}`);
           console.error(`Error calling Pollinations AI API with model ${model} on attempt ${attempt}:`, error);
         }
       }
       if (attempt < MAX_ATTEMPTS) {
-        log?.(`[API Retry - Primary] All models failed on attempt ${attempt}. Waiting ${RETRY_DELAY_MS / 1e3} seconds before retrying...`);
+        log?.(`[API Retry - Pollinations] All models failed on attempt ${attempt}. Waiting ${RETRY_DELAY_MS / 1e3} seconds before retrying...`);
         await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
       }
     }
-    throw new Error(`All models failed after ${MAX_ATTEMPTS} attempts. Last error: ${lastError?.message || "Primary API call failed exhaustively."}`);
+    throw new Error(`All models failed after ${MAX_ATTEMPTS} attempts. Last error: ${lastError?.message || "Pollinations API call failed exhaustively."}`);
   };
   const queuedRequest = primaryApiRequestQueue.then(() => {
     const now = Date.now();
@@ -4138,12 +4238,12 @@ var _callPrimaryApiWithRetries = (prompt, log, onRequest, onResponse) => {
   });
   return queuedRequest;
 };
-var _callFallbackApiWithRetries = async (prompt, log, onRequest, onResponse) => {
+var _callMakuluApi = async (prompt, log, onRequest, onResponse) => {
   let attempts = 0;
   while (attempts < ELECTRA_MAX_RETRIES) {
     attempts++;
     try {
-      log?.(`[API Request - Fallback] Calling Electra API... (Attempt ${attempts}/${ELECTRA_MAX_RETRIES})`);
+      log?.(`[API Request - Makulu] Calling Electra API... (Attempt ${attempts}/${ELECTRA_MAX_RETRIES})`);
       onRequest?.();
       const response = await fetch(ELECTRA_API_URL, {
         method: "POST",
@@ -4152,42 +4252,59 @@ var _callFallbackApiWithRetries = async (prompt, log, onRequest, onResponse) => 
       });
       if (!response.ok) {
         const errorBody = await response.text();
-        log?.(`[API Error - Fallback] Status ${response.status}: ${errorBody}`);
-        throw new Error(`Fallback API request failed with status ${response.status}`);
+        log?.(`[API Error - Makulu] Status ${response.status}: ${errorBody}`);
+        throw new Error(`Makulu API request failed with status ${response.status}`);
       }
       onResponse?.();
       const data = await response.json();
       const text = data.response;
       if (typeof text !== "string") {
-        log?.(`[API Error - Fallback] Invalid response format. Expected a string in the 'response' field.`);
-        throw new Error("Invalid Fallback API response format.");
+        log?.(`[API Error - Makulu] Invalid response format. Expected a string in the 'response' field.`);
+        throw new Error("Invalid Makulu API response format.");
       }
-      log?.(`[API Response - Fallback] Raw text: ${text.substring(0, 200)}...`);
+      log?.(`[API Response - Makulu] Raw text: ${text.substring(0, 200)}...`);
       const codeBlockRegex = /```(?:[a-zA-Z]+)?\s*([\s\S]*?)\s*```/;
       const match = text.match(codeBlockRegex);
       if (match && match[1]) {
-        log?.(`[API Parser - Fallback] Extracted content from code block.`);
+        log?.(`[API Parser - Makulu] Extracted content from code block.`);
         return match[1].trim();
       }
-      log?.(`[API Parser - Fallback] No code block found. Returning raw text as fallback.`);
+      log?.(`[API Parser - Makulu] No code block found. Returning raw text as fallback.`);
       return text.trim();
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Unknown error";
-      log?.(`[API Error - Fallback on Attempt ${attempts}] ${errorMessage}`);
-      console.error(`Error calling Fallback AI API on attempt ${attempts}:`, error);
+      log?.(`[API Error - Makulu on Attempt ${attempts}] ${errorMessage}`);
+      console.error(`Error calling Makulu AI API on attempt ${attempts}:`, error);
       if (attempts >= ELECTRA_MAX_RETRIES) {
-        throw new Error(`Fallback API failed after ${ELECTRA_MAX_RETRIES} attempts.`);
+        throw new Error(`Makulu API failed after ${ELECTRA_MAX_RETRIES} attempts.`);
       }
       await new Promise((resolve) => setTimeout(resolve, 1e3 * Math.pow(2, attempts)));
     }
   }
-  throw new Error(`Fallback API call failed exhaustively after ${ELECTRA_MAX_RETRIES} attempts.`);
+  throw new Error(`Makulu API call failed exhaustively after ${ELECTRA_MAX_RETRIES} attempts.`);
 };
+var apiMap = {
+  pollinations: _callPollinationsApi,
+  makulu: _callMakuluApi
+};
+var primaryApi = apiMap.pollinations;
+var secondaryApi = apiMap.makulu;
+function configureApiEndpoints(prefs) {
+  if (prefs && apiMap[prefs.primaryTextApi] && apiMap[prefs.secondaryTextApi]) {
+    primaryApi = apiMap[prefs.primaryTextApi];
+    secondaryApi = apiMap[prefs.secondaryTextApi];
+    console.log(`[API Strategy] Configured. Primary: ${prefs.primaryTextApi}, Secondary: ${prefs.secondaryTextApi}`);
+  } else {
+    console.warn("[API Strategy] Invalid or missing API preferences in settings. Using default (Pollinations -> Makulu).");
+    primaryApi = apiMap.pollinations;
+    secondaryApi = apiMap.makulu;
+  }
+}
 var callApi = async (prompt, log, onRequest, onResponse, forceFallback = false) => {
   const now = Date.now();
   if (forceFallback) {
     log?.("[API Strategy] Fallback API forced due to audio file attachment. Using secondary API.");
-    return await _callFallbackApiWithRetries(prompt, log, onRequest, onResponse);
+    return await secondaryApi(prompt, log, onRequest, onResponse);
   }
   if (isInFallbackMode && now > fallbackModeEndTime) {
     log?.("[API Strategy] Fallback duration expired. Attempting to switch back to primary API.");
@@ -4196,7 +4313,7 @@ var callApi = async (prompt, log, onRequest, onResponse, forceFallback = false) 
   if (isInFallbackMode) {
     log?.("[API Strategy] In active fallback mode. Using secondary API.");
     try {
-      const result = await _callFallbackApiWithRetries(prompt, log, onRequest, onResponse);
+      const result = await secondaryApi(prompt, log, onRequest, onResponse);
       return result;
     } catch (fallbackError) {
       log?.("[API Strategy] Secondary API (fallback) also failed. The issue might be widespread. Re-throwing error.");
@@ -4205,14 +4322,14 @@ var callApi = async (prompt, log, onRequest, onResponse, forceFallback = false) 
   } else {
     log?.("[API Strategy] In normal mode. Using primary API.");
     try {
-      const result = await _callPrimaryApiWithRetries(prompt, log, onRequest, onResponse);
+      const result = await primaryApi(prompt, log, onRequest, onResponse);
       return result;
     } catch (primaryError) {
       log?.(`[API Strategy] Primary API failed: ${primaryError instanceof Error ? primaryError.message : "Unknown error"}. Switching to fallback mode for 5 minutes.`);
       isInFallbackMode = true;
       fallbackModeEndTime = now + FALLBACK_DURATION_MS;
       log?.("[API Strategy] Immediately using secondary API for the current failed request.");
-      return await _callFallbackApiWithRetries(prompt, log, void 0, onResponse);
+      return await secondaryApi(prompt, log, void 0, onResponse);
     }
   }
 };
@@ -4278,7 +4395,7 @@ var rateLimitImageApi = async (log) => {
 var IMAGE_API_CONFIG = {
   baseUrl: "https://image.pollinations.ai/prompt/",
   defaultParams: {
-    model: "flux",
+    model: "turbo",
     width: 1024,
     height: 576,
     nologo: "true",
@@ -5067,6 +5184,149 @@ Analyze the failure and produce the JSON RefactorRequest to fix the root cause.`
   const jsonString = await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
   return JSON.parse(jsonString);
 };
+var executeBuilderAgent = async (node, input, log, onRequest, onResponse) => {
+  let systemPrompt = "";
+  const prompt = node.config.prompt || "";
+  switch (node.type) {
+    case "writer":
+      systemPrompt = "You are a Writer Agent. Your task is to generate text content based on the user prompt and any provided input text. Respond only with the generated content, without any commentary.";
+      break;
+    case "coder":
+      systemPrompt = "You are a Coder Agent. Your task is to generate code based on the user prompt and any provided input text. Respond only with the raw code, enclosed in a markdown code block.";
+      break;
+    case "humanizer":
+      systemPrompt = "You are a Humanizer Agent. Your task is to revise the input text to make it sound more natural and less robotic, based on the user prompt. Respond only with the revised text.";
+      break;
+    case "summarizer":
+      systemPrompt = "You are a Summarizer Agent. Your task is to create a concise summary of the input text, guided by the user prompt. Respond only with the summary.";
+      break;
+    case "refactor":
+      systemPrompt = "You are a Code Refactor Agent. Your task is to apply changes to the input code as described by the user prompt. Respond only with the complete, refactored code in a markdown block.";
+      break;
+    case "content-planner":
+      systemPrompt = "You are a Content Planner Agent. Based on the input and user prompt, create a structural outline for a piece of content. Respond only with the outline in Markdown format.";
+      break;
+    default:
+      throw new Error(`Builder agent type "${node.type}" is not implemented for this function.`);
+  }
+  const mainPrompt = `
+---
+PREVIOUS STEP'S OUTPUT (Use this as the primary input/context):
+${input || "(No input from previous step)"}
+---
+USER'S PROMPT FOR THIS STEP (Your specific instruction):
+${prompt || "(No specific prompt for this step)"}
+---
+Now, execute your task.`;
+  return callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+};
+var executeImageGenerator = async (prompt, log, onRequest, onResponse) => {
+  const images = await generateImages(prompt, "1:1", 1, log, onRequest, onResponse);
+  if (images.length === 0) {
+    throw new Error("Image generation failed to produce an image.");
+  }
+  return images[0];
+};
+var executeDataExtractor = async (text, schema, log, onRequest, onResponse) => {
+  const systemPrompt = `You are a "Data Extractor" AI. Your task is to extract information from the provided text based on the given JSON schema.
+Your response MUST be ONLY a valid JSON object that conforms to the schema. Do not add any commentary, explanations, or markdown formatting.`;
+  const mainPrompt = `
+**JSON Schema to conform to:**
+\`\`\`json
+${schema}
+\`\`\`
+---
+**Text to extract from:**
+${text}
+---
+Extract the data and provide it as a single JSON object.`;
+  const result = await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+  try {
+    JSON.parse(result);
+    return result;
+  } catch (e) {
+    throw new Error("Data Extractor failed to produce valid JSON.");
+  }
+};
+var evaluateCondition = async (text, condition, log, onRequest, onResponse) => {
+  const systemPrompt = `You are a logical evaluation AI. Your task is to evaluate a condition against a provided text.
+Your response MUST be ONLY the word 'true' or 'false', in lowercase. Do not add any explanation, punctuation, or other words.`;
+  const mainPrompt = `
+**Condition to evaluate:** "${condition}"
+---
+**Text to evaluate against:**
+"${text}"
+---
+Does the condition evaluate to true for the given text? Respond with only 'true' or 'false'.`;
+  const result = await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+  const trimmedResult = result.trim().toLowerCase();
+  if (trimmedResult === "true" || trimmedResult === "false") {
+    return trimmedResult;
+  }
+  log(`[Condition Evaluator Warning] AI did not return 'true' or 'false'. Got: "${result}". Inferring based on content.`);
+  return result.toLowerCase().includes("true") ? "true" : "false";
+};
+var generateProjectFromDescription = async (prompt, onWriteToFile, log, onRequest, onResponse) => {
+  const systemPrompt = `You are a "Project Builder" agent. Your task is to generate a complete, simple project from a user's description. You must generate all necessary files.
+
+**RESPONSE FORMAT:**
+Your entire response MUST be a valid JSON object inside a markdown code block.
+The JSON object must have a single key "files", which is an array of file objects.
+Each file object must have "path" and "content" keys.
+
+**CRITICAL LOGIC:**
+- Create a minimal set of files for a functional project.
+- For web projects, this should include index.html, a stylesheet, and a script file.
+- The content must be complete and runnable.
+
+**Example Response:**
+\`\`\`json
+{
+  "files": [
+    {
+      "path": "index.html",
+      "content": "<!DOCTYPE html>..."
+    },
+    {
+      "path": "style.css",
+      "content": "body { font-family: sans-serif; }"
+    },
+    {
+      "path": "script.js",
+      "content": "console.log('Hello World');"
+    }
+  ]
+}
+\`\`\`
+`;
+  const mainPrompt = `
+**Project Description:**
+"${prompt}"
+
+---
+Generate the JSON response with all the necessary files.
+`;
+  try {
+    const jsonString = await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+    const result = JSON.parse(jsonString);
+    if (result.files && Array.isArray(result.files)) {
+      let fileCount = 0;
+      for (const file of result.files) {
+        if (file.path && typeof file.content === "string") {
+          onWriteToFile(file.path, file.content);
+          fileCount++;
+        }
+      }
+      log(`[Project Builder] Successfully generated and wrote ${fileCount} files.`);
+      return `Project generation complete. ${fileCount} files were created.`;
+    }
+    throw new Error("Invalid JSON structure from Project Builder agent. Expected { files: [...] }.");
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    log(`[Project Builder Error] Failed to generate project: ${errorMessage}`);
+    throw error;
+  }
+};
 var generateTddTestFile = async (originalPrompt, language, filePlan, log, onRequest, onResponse) => {
   const languageSupport = {
     "react": { extension: "test.tsx", framework: "Vitest/React Testing Library" },
@@ -5511,7 +5771,7 @@ Your task is to revise a piece of text to improve its flow, word choice, and ove
 3.  The tone should remain consistent with the original piece.
 4.  Your response MUST ONLY be the complete, revised text.
 5.  Do NOT add any explanation, commentary, or markdown formatting unless it was part of the original.
-6.  If the text contains any self-reference to the AI (e.g., "As a large language model...", "As an AI..."), you MUST replace it with the name "Electra". For example, "As an AI, I cannot..." should become "As Electra, I cannot...".`;
+6.  Only introduce yourself as "Electra, Created by Jacque Raymer and the MakuluLinux Team" if it is contextually appropriate (e.g., when asked for your name, who built you, or when replacing a self-reference like "As an AI..."). Do NOT add your name to every response; it should sound natural.`;
   const mainPrompt = `
 **Target Word Count:** ${wordCountTarget}
 ---
@@ -5615,454 +5875,880 @@ Now, write the complete text for this chapter.`;
     addLog({ source: "writer", message: `Draft of ${chapterPlan.path} complete. Verifying...`, status: "success" });
     addLog({ source: "content-verifier", message: `Verifying content against constraints...`, status: "running" });
     const verifierSystemPrompt = `You are a "Content Verifier" AI. You check if a tutorial chapter correctly follows its outline and meets all constraints. Respond with a JSON object: \`{"success": true}\` or \`{"success": false, "feedback": "reason"}\`.`;
-    const verifierMainPrompt = `**Chapter Outline:** "${chapterPlan.description}"
+    const verifierMainPrompt = `
+**Constraints:**
+- **Topic:** The content must be about: "${chapterPlan.description}"
+- **Word Count:** ${fullPrompt.spec.wordsPerChapter}
+- **Audience:** ${fullPrompt.spec.audience}
+- **Tone:** ${fullPrompt.spec.tone}
 
-**Chapter Text:**
+**Content to Verify:**
+---
 ${currentContent}
-
-Does the text follow the outline and explain the concepts clearly for a ${fullPrompt.spec.audience} audience?`;
-    const verifierResult = JSON.parse(await callApiOrchestrator(verifierSystemPrompt, verifierMainPrompt, log, onRequest, onResponse));
-    if (!verifierResult.success) {
-      lastFeedback = verifierResult.feedback;
+---
+Check if the content meets all constraints and provide the JSON response.`;
+    const verificationResultJson = await callApiOrchestrator(verifierSystemPrompt, verifierMainPrompt, log, onRequest, onResponse);
+    const verificationResult = JSON.parse(verificationResultJson);
+    if (verificationResult.success) {
+      addLog({ source: "content-verifier", message: "Content verification successful.", status: "success" });
+      return { success: true, content: currentContent };
+    } else {
+      lastFeedback = verificationResult.feedback;
       addLog({ source: "content-verifier", message: `Verification failed: ${lastFeedback}`, status: "error" });
-      continue;
+      if (attempt === MAX_REFINEMENT_ATTEMPTS) {
+        return { success: false, content: currentContent, failureReason: lastFeedback };
+      }
     }
-    addLog({ source: "content-verifier", message: `Verification successful.`, status: "success" });
-    return { success: true, content: currentContent };
   }
-  return { success: false, content: currentContent, failureReason: `Failed to write a valid chapter after ${MAX_REFINEMENT_ATTEMPTS} attempts.` };
+  return { success: false, content: currentContent, failureReason: `Failed to meet criteria after ${MAX_REFINEMENT_ATTEMPTS} attempts.` };
 };
 var regenerateChapter = async (fullPrompt, chapterPlan, previousChapterSummary, nextChapterSummary, addLog, log, onProgress, onRequest, onResponse) => {
-  addLog({ source: "writer", message: `Regenerating ${chapterPlan.path}...`, status: "running" });
-  const writerSystemPrompt = `You are a master "Novelist" AI and editor. Your task is to rewrite a single chapter of a novel to better fit between the preceding and succeeding chapters.
+  const writerSystemPrompt = `You are a master "Novelist" AI. Your task is to REVISE and REWRITE a single chapter of a novel based on a detailed plan and context from surrounding chapters.
 
 **CRITICAL RULES:**
-1. Your response MUST be ONLY the text of the rewritten chapter in Markdown format.
-2. Do NOT include the chapter title.
-3. Write in a compelling style appropriate for the genre (${fullPrompt.spec.genre}).
+1. Your response MUST be ONLY the text of the chapter in Markdown format.
+2. Do NOT include the chapter title (e.g., "Chapter 1") in the output.
+3. Write in a compelling, literary style appropriate for the genre (${fullPrompt.spec.genre}).
 4. Ensure the chapter is approximately ${fullPrompt.spec.wordsPerChapter} words long.
-5. You MUST adhere to the original outline for this chapter while improving the transitions.
-6. The rewritten chapter MUST connect logically with the summaries of both the previous and next chapters.`;
+5. You MUST adhere to the provided outline for this chapter.
+6. You MUST maintain continuity from the previous chapter's summary AND lead into the next chapter's summary.`;
   const writerMainPrompt = `
 **Novel Premise:** "${fullPrompt.premise}"
+**Genre:** ${fullPrompt.spec.genre}
 ---
 **Summary of Previous Chapter:**
 ${previousChapterSummary}
 ---
-**Plan for Chapter to Regenerate (${chapterPlan.path}):**
+**Plan for Current Chapter (${chapterPlan.path}):**
 "${chapterPlan.description}"
 ---
-**Summary of Next Chapter:**
+**Summary of Next Chapter (What this chapter should lead into):**
 ${nextChapterSummary}
 ---
-Now, rewrite the complete text for this chapter to create a seamless narrative flow.`;
-  const content = await callApiOrchestrator(writerSystemPrompt, writerMainPrompt, log, onRequest, onResponse);
-  onProgress(content);
-  addLog({ source: "writer", message: `Regeneration of ${chapterPlan.path} complete.`, status: "success" });
-  return { success: true, content };
+Now, write the complete revised text for this chapter.`;
+  try {
+    const content = await callApiOrchestrator(writerSystemPrompt, writerMainPrompt, log, onRequest, onResponse);
+    onProgress(content);
+    return { success: true, content };
+  } catch (error) {
+    const failureReason = error instanceof Error ? error.message : "Unknown regeneration error";
+    return { success: false, content: "", failureReason };
+  }
 };
 var regenerateTutorialChapter = async (fullPrompt, chapterPlan, previousChapterSummary, nextChapterSummary, addLog, log, onProgress, onRequest, onResponse) => {
-  addLog({ source: "writer", message: `Regenerating tutorial chapter ${chapterPlan.path}...`, status: "running" });
-  const writerSystemPrompt = `You are an expert "Technical Writer" and editor. Your task is to rewrite a single chapter of a tutorial book to improve its clarity and flow between the preceding and succeeding chapters.
+  const writerSystemPrompt = `You are an expert "Technical Writer" AI. Your task is to REVISE and REWRITE a single chapter of a tutorial book.
 
 **CRITICAL RULES:**
-1. Your response MUST be ONLY the text of the rewritten chapter in Markdown format.
+1. Your response MUST be ONLY the text of the chapter in Markdown format.
 2. Do NOT include the chapter title.
-3. Write in a clear, educational style appropriate for the target audience (${fullPrompt.spec.audience}).
-4. Ensure the chapter is approximately ${fullPrompt.spec.wordsPerChapter} words long.
-5. You MUST adhere to the original outline for this chapter while improving the transitions and explanations.
-6. The rewritten chapter MUST connect logically with the summaries of both the previous and next chapters.`;
+3. Write in a clear, educational style for the target audience (${fullPrompt.spec.audience}) and tone (${fullPrompt.spec.tone}).
+4. You MUST maintain continuity from the previous chapter's summary AND lead into the next chapter's summary.`;
   const writerMainPrompt = `
 **Book Topic:** "${fullPrompt.premise}"
 ---
 **Summary of Previous Chapter:**
 ${previousChapterSummary}
 ---
-**Plan for Chapter to Regenerate (${chapterPlan.path}):**
+**Plan for Current Chapter (${chapterPlan.path}):**
 "${chapterPlan.description}"
 ---
-**Summary of Next Chapter:**
+**Summary of Next Chapter (What this chapter should lead into):**
 ${nextChapterSummary}
 ---
-Now, rewrite the complete text for this chapter to create a clear and logical learning path.`;
-  const content = await callApiOrchestrator(writerSystemPrompt, writerMainPrompt, log, onRequest, onResponse);
-  onProgress(content);
-  addLog({ source: "writer", message: `Regeneration of ${chapterPlan.path} complete.`, status: "success" });
-  return { success: true, content };
-};
-var summarizeChatHistory = async (chatHistoryText, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Summarizer" agent. Your task is to read a conversation transcript and create a very concise summary of the key points.
-This summary will be used as a condensed memory for future turns in the conversation.
-
-**CRITICAL RULES:**
-1.  The summary MUST be as short as possible while retaining the essential context of the user's requests and the assistant's key responses.
-2.  Focus on what the user wants to achieve.
-3.  Your response MUST ONLY be the summary text.
-4.  Do NOT add any commentary or titles like "Summary:".`;
-  const mainPrompt = `
-**Conversation Transcript:**
----
-${chatHistoryText}
----
-Generate the concise summary.`;
+Now, write the complete revised text for this tutorial chapter.`;
   try {
-    return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+    const content = await callApiOrchestrator(writerSystemPrompt, writerMainPrompt, log, onRequest, onResponse);
+    onProgress(content);
+    return { success: true, content };
   } catch (error) {
-    log?.(`[Summarizer Agent Error] Failed to summarize chat history: ${error instanceof Error ? error.message : "Unknown error"}.`);
-    return "Could not summarize history.";
+    const failureReason = error instanceof Error ? error.message : "Unknown regeneration error";
+    return { success: false, content: "", failureReason };
   }
 };
-var processAudioQueryWithAgents = async (promptHistory, addLog, log, onRequest, onResponse, forceFallback) => {
-  const masterAgentSystemPrompt = `You are a "Master Agent", a helpful and conversational AI assistant. Your goal is to provide a comprehensive, well-rounded answer based on the full conversation history. You should be friendly and thorough. Your response should be plain text, suitable for text-to-speech. Do not use markdown.`;
-  addLog({ source: "master-agent", message: "Formulating comprehensive answer...", status: "running" });
-  const masterAgentPromise = callApiOrchestrator(masterAgentSystemPrompt, promptHistory, log, onRequest, onResponse, forceFallback);
-  const detailsAgentSystemPrompt = `You are a "Details Agent", a specialist in providing concise, factually dense information. Extract the key question from the user's last turn and provide a direct, data-driven answer. Avoid conversational filler. Your response should be plain text. Do not use markdown.`;
-  addLog({ source: "details-agent", message: "Extracting key facts and details...", status: "running" });
-  const detailsAgentPromise = callApiOrchestrator(detailsAgentSystemPrompt, promptHistory, log, onRequest, onResponse, forceFallback);
-  const [masterResponse, detailsResponse] = await Promise.all([masterAgentPromise, detailsAgentPromise]);
-  addLog({ source: "master-agent", message: "Comprehensive answer generated.", status: "success" });
-  addLog({ source: "details-agent", message: "Factual details extracted.", status: "success" });
-  addLog({ source: "humanizer", message: "Combining responses into a natural, spoken answer...", status: "running" });
-  const humanizerSystemPrompt = `You are a "Humanizer" agent for a voice assistant. Your job is to combine two different AI responses (one conversational, one factual) into a single, natural-sounding spoken response.
+var summarizeChatHistory = async (historyText, log, onRequest, onResponse) => {
+  const systemPrompt = `You are a "Summarizer" agent. Your task is to read a conversation transcript and create a concise, one-paragraph summary.
+The summary should capture the key topics, questions, and conclusions of the conversation. It will be used as a condensed context for future turns.
 
 **CRITICAL RULES:**
-1.  Your response must be plain text. Do NOT use markdown.
-2.  Synthesize the best parts of both inputs into a cohesive answer.
-3.  The final response should be conversational and easy to understand when read aloud.
-4.  Your response MUST ONLY be the final text. Do not add any commentary.
-5.  Only introduce yourself as "Electra" if it is contextually appropriate (e.g., when asked for your name, or when replacing a self-reference like "As an AI..."). Do NOT add your name to every response; it should sound natural.`;
-  const humanizerMainPrompt = `
-**Conversational Answer (from Master Agent):**
+1. The summary MUST be a single, dense paragraph.
+2. Your response MUST ONLY be the summary text.
+3. Do NOT add any commentary or titles like "Summary:".`;
+  const mainPrompt = `
+**Conversation Transcript to Summarize:**
 ---
+${historyText}
+---
+Generate the one-paragraph summary.`;
+  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+};
+var processAudioQueryWithAgents = async (fullPromptHistory, addLog, log, onRequest, onResponse, forceFallback) => {
+  onRequest();
+  addLog({ source: "master-agent", message: "Analyzing request for a comprehensive response...", status: "running" });
+  const masterSystemPrompt = `You are the "Master Agent," a conversational AI named Electra. Your goal is to provide a comprehensive, helpful, and engaging response based on the entire conversation history. You should be empathetic, provide context, and explain your reasoning. Your persona is friendly and knowledgeable.`;
+  const masterResponsePromise = callApiOrchestrator(masterSystemPrompt, fullPromptHistory, log, void 0, void 0, forceFallback);
+  addLog({ source: "details-agent", message: "Analyzing request for a factual response...", status: "running" });
+  const detailsSystemPrompt = `You are the "Details Agent." Your goal is to provide a concise, direct, and factually dense response. Extract key information, data points, and code snippets from the user's query and provide them without conversational filler.`;
+  const detailsResponsePromise = callApiOrchestrator(detailsSystemPrompt, fullPromptHistory, log, void 0, void 0, forceFallback);
+  const [masterResponse, detailsResponse] = await Promise.all([masterResponsePromise, detailsResponsePromise]);
+  addLog({ source: "master-agent", message: "Comprehensive response generated.", status: "success" });
+  addLog({ source: "details-agent", message: "Factual response generated.", status: "success" });
+  addLog({ source: "humanizer", message: "Synthesizing responses into a single, cohesive answer...", status: "running" });
+  const humanizerSystemPrompt = `You are the "Humanizer" agent, acting as the final voice of the AI persona "Electra". You have received two internal responses: one from a conversational "Master Agent" and one from a factual "Details Agent".
+Your task is to synthesize these two responses into a single, high-quality, natural-sounding answer.
+
+**CRITICAL RULES:**
+1.  Merge the conversational tone of the Master Agent with the key facts and data from the Details Agent.
+2.  Eliminate any redundancy between the two responses.
+3.  Ensure the final answer is well-structured, easy to read, and directly addresses the user's most recent query.
+4.  Your response MUST ONLY be the final, synthesized text. Do not add commentary about the process.`;
+  const humanizerMainPrompt = `
+**User's Full Query History (for context):**
+${fullPromptHistory}
+---
+**Master Agent's Comprehensive Response:**
 ${masterResponse}
 ---
-**Factual Answer (from Details Agent):**
----
+**Details Agent's Factual Response:**
 ${detailsResponse}
 ---
-Combine these into a single, excellent response for a voice assistant.`;
-  const finalResponse = await callApiOrchestrator(humanizerSystemPrompt, humanizerMainPrompt, log, onRequest, onResponse, forceFallback);
+Now, synthesize these into the final, polished response.`;
+  const finalResponse = await callApiOrchestrator(humanizerSystemPrompt, humanizerMainPrompt, log, void 0, void 0, forceFallback);
   addLog({ source: "humanizer", message: "Final response synthesized.", status: "success" });
+  onResponse();
   return finalResponse;
 };
-var chatWithCanvasContent = async (userPrompt, canvasContent, chatHistory, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Canvas Assistant" AI. Your task is to interact with a user about a large text document ("the canvas"). You can either chat about it or propose direct updates to it.
+var chatWithCanvasContent = async (message, canvasContent, chatHistory, log, onRequest, onResponse) => {
+  const systemPrompt = `You are an AI assistant for a collaborative text/code editor called "The Canvas". Your goal is to help the user by either chatting about the content or proposing direct modifications to it.
 
 **RESPONSE FORMAT:**
 Your entire response MUST be a valid JSON object inside a markdown code block.
 
-1.  **If the user is asking a question or having a conversation about the content:**
-    Respond with a "chat" message.
-    \`\`\`json
-    {
-      "type": "chat",
-      "message": "Your conversational response here."
-    }
-    \`\`\`
+**1. To respond with a chat message:**
+\`\`\`json
+{
+  "type": "chat",
+  "message": "Your text response to the user's query."
+}
+\`\`\`
 
-2.  **If the user is asking you to modify, add to, or rewrite the canvas content:**
-    Respond with an "update" containing the FULL, new content of the canvas.
-    \`\`\`json
-    {
-      "type": "update",
-      "content": "The full, modified text of the entire canvas goes here..."
-    }
-    \`\`\`
+**2. To propose an update to the entire canvas content:**
+\`\`\`json
+{
+  "type": "update",
+  "content": "The full, modified text of the entire canvas."
+}
+\`\`\`
 
 **CRITICAL LOGIC:**
-- Analyze the user's intent. Are they asking a question, or are they giving an editing command?
-- When providing an "update", you MUST return the entire canvas content, including your changes. Do not just return the changed portion.`;
-  const historyText = chatHistory.map((m) => `${m.role}: ${m.content}`).join("\n");
+- If the user asks a question, explains something, or gives a general command, use the "chat" type.
+- If the user explicitly asks you to change, refactor, add, or delete something in the canvas, use the "update" type. You MUST return the *entire* canvas content with the changes applied.
+- Be conservative with "update". Only use it for clear, actionable requests.`;
   const mainPrompt = `
 **Full Canvas Content:**
 ---
 ${canvasContent}
 ---
-**Conversation History:**
+**Chat History (for context):**
+${chatHistory.map((m) => `${m.role}: ${m.content}`).join("\n")}
 ---
-${historyText}
----
-**User's Latest Message:** "${userPrompt}"
+**User's Latest Message:** "${message}"
 ---
 Now, provide your response in the specified JSON format.`;
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+  return callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
 };
-var modifySelectedCanvasContent = async (userPrompt, selectedText, fullCanvasContent, chatHistory, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Canvas Selection Editor" AI. Your task is to modify a specific piece of selected text based on a user's instruction.
+var modifySelectedCanvasContent = async (prompt, selectedText, fullContent, chatHistory, log, onRequest, onResponse) => {
+  const systemPrompt = `You are an AI text manipulation agent. Your task is to take a piece of selected text, a user's instruction, and the full context it came from, and return only the modified version of the selected text.
 
 **CRITICAL RULES:**
-1.  Your response MUST ONLY be the modified version of the selected text.
-2.  Do NOT return the full canvas content, only the changed selection.
-3.  Do NOT add any commentary, explanation, or markdown formatting.`;
-  const historyText = chatHistory.map((m) => `${m.role}: ${m.content}`).join("\n");
+1.  Your response MUST ONLY be the modified text selection.
+2.  Do NOT add any commentary, explanations, or markdown formatting.
+3.  Apply the user's request precisely to the selected text.`;
   const mainPrompt = `
-**Full Canvas Content (for context):**
+**Full Document Context:**
 ---
-${fullCanvasContent}
----
-**Conversation History (for context):**
----
-${historyText}
+${fullContent}
 ---
 **Selected Text to Modify:**
 ---
 ${selectedText}
 ---
-**User's Instruction:** "${userPrompt}"
+**User's Instruction:** "${prompt}"
 ---
 Now, provide ONLY the modified version of the selected text.`;
   return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
 };
 var getAIQuickActions = async (selectedText, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Contextual Action Suggester" AI. Based on a piece of selected text, you must suggest three brief, relevant actions a user might want to perform.
+  const systemPrompt = `You are a helpful AI assistant. Based on a piece of selected text, you need to suggest three concise, relevant quick actions.
 
 **RESPONSE FORMAT:**
-Your entire response MUST be a valid JSON object inside a markdown code block.
-The object should have a single key "actions", which is an array of exactly three strings.
+Your response MUST be a valid JSON array of strings inside a markdown code block.
+\`\`\`json
+[
+  "Action 1",
+  "Action 2",
+  "Action 3"
+]
+\`\`\`
 
 **CRITICAL LOGIC:**
-- The actions should be short (1-4 words).
-- They should be relevant to the content of the text. For code, suggest things like "Explain This", "Add Type Definitions", "Refactor". For prose, suggest things like "Summarize", "Improve Wording", "Change Tone to Formal".
-- Always include a generic but useful fallback if the text is unclear.
-
-**Example for code selection:**
-\`\`\`json
-{
-  "actions": ["Explain This", "Add JSDoc Comments", "Optimize Function"]
-}
-\`\`\`
-
-**Example for prose selection:**
-\`\`\`json
-{
-  "actions": ["Summarize", "Fix Grammar", "Expand on This"]
-}
-\`\`\`
-`;
+- The actions should be relevant to the content.
+- If it's code, suggest actions like "Add comments", "Refactor for clarity", "Explain this code".
+- If it's prose, suggest actions like "Summarize", "Fix grammar & spelling", "Change tone to professional".
+- Keep the actions short and to the point.`;
   const mainPrompt = `
 **Selected Text:**
 ---
 ${selectedText}
 ---
-Generate the JSON response with three suggested actions.`;
-  try {
-    const jsonString = await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
-    const result = JSON.parse(jsonString);
-    if (result.actions && Array.isArray(result.actions) && result.actions.length > 0) {
-      return result.actions.slice(0, 3);
-    }
-  } catch (e) {
-    log(`[Quick Actions Error] Failed to get quick actions: ${e instanceof Error ? e.message : "Unknown error"}. Returning defaults.`);
-  }
-  return ["Summarize", "Fix Grammar & Spelling", "Explain This"];
+Generate three relevant quick actions in the specified JSON format.`;
+  const jsonString = await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+  return JSON.parse(jsonString);
 };
-var stylizeImagePrompt = async (prompt, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Stylist Agent" for an image generation AI. Your task is to take a user's prompt and add stylistic keywords to make the image more visually interesting.
-    
-**CRITICAL RULES:**
-1. Your response MUST ONLY be a comma-separated list of stylistic keywords.
-2. Do NOT repeat the user's original prompt.
-3. Examples of keywords: "concept art", "hyperrealistic", "cinematic", "art deco", "fantasy", "steampunk".`;
-  const mainPrompt = `**User Prompt:** "${prompt}"
-
-**Stylistic Keywords:**`;
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+var stylizeImagePrompt = (prompt, log, onRequest, onResponse) => {
+  const systemPrompt = "You are a 'Stylist Agent'. Enhance the following prompt with artistic style keywords. Return ONLY the keywords, separated by commas.";
+  return callApiOrchestrator(systemPrompt, prompt, log, onRequest, onResponse);
 };
-var addLightingToImagePrompt = async (prompt, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Lighting Agent" for an image generation AI. Your task is to add lighting-related keywords to a user's prompt.
-    
-**CRITICAL RULES:**
-1. Your response MUST ONLY be a comma-separated list of lighting keywords.
-2. Examples: "cinematic lighting", "dramatic lighting", "soft light", "volumetric lighting", "god rays".`;
-  const mainPrompt = `**User Prompt:** "${prompt}"
-
-**Lighting Keywords:**`;
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+var addLightingToImagePrompt = (prompt, log, onRequest, onResponse) => {
+  const systemPrompt = "You are a 'Lighting Agent'. Enhance the following prompt with lighting keywords. Return ONLY the keywords, separated by commas.";
+  return callApiOrchestrator(systemPrompt, prompt, log, onRequest, onResponse);
 };
-var addFocusToImagePrompt = async (prompt, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Focus Agent" for an image generation AI. Your task is to add camera and focus-related keywords to a user's prompt.
-    
-**CRITICAL RULES:**
-1. Your response MUST ONLY be a comma-separated list of camera/focus keywords.
-2. Examples: "depth of field", "bokeh", "wide angle lens", "macro shot", "8k".`;
-  const mainPrompt = `**User Prompt:** "${prompt}"
-
-**Camera/Focus Keywords:**`;
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+var addFocusToImagePrompt = (prompt, log, onRequest, onResponse) => {
+  const systemPrompt = "You are a 'Focus Agent'. Enhance the following prompt with camera and lens keywords (e.g., macro, telephoto, bokeh). Return ONLY the keywords, separated by commas.";
+  return callApiOrchestrator(systemPrompt, prompt, log, onRequest, onResponse);
 };
-var addDetailsToImagePrompt = async (prompt, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Details Agent" for an image generation AI. Your task is to add fine details and corrective keywords to a user's prompt.
-    
-**CRITICAL RULES:**
-1. Your response MUST ONLY be a comma-separated list of detail-oriented keywords.
-2. Examples: "hyperdetailed", "intricate details", "masterpiece", "well-composed", "award-winning".`;
-  const mainPrompt = `**User Prompt:** "${prompt}"
-
-**Detail Keywords:**`;
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+var addDetailsToImagePrompt = (prompt, log, onRequest, onResponse) => {
+  const systemPrompt = "You are a 'Details Agent'. Enhance the following prompt with keywords for fine details and quality. Return ONLY the keywords, separated by commas.";
+  return callApiOrchestrator(systemPrompt, prompt, log, onRequest, onResponse);
 };
-var finalizeImagePrompt = async (originalPrompt, style, lighting, focus, details, log, onRequest, onResponse) => {
-  const systemPrompt = `You are a "Finalizer Agent". Your task is to combine a user's prompt with several keyword lists into a single, cohesive, and powerful final prompt for an image generation AI.
-
-**CRITICAL RULES:**
-1. Combine all inputs into a single, comma-separated string.
-2. Prioritize the user's original prompt at the beginning.
-3. Remove duplicate or conflicting keywords.
-4. Your response MUST ONLY be the final, combined prompt.`;
-  const mainPrompt = `
-**Original Prompt:** ${originalPrompt}
-**Style Keywords:** ${style}
-**Lighting Keywords:** ${lighting}
-**Focus Keywords:** ${focus}
-**Detail Keywords:** ${details}
----
-**Final Combined Prompt:**`;
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+var finalizeImagePrompt = (prompt, style, lighting, focus, details, log, onRequest, onResponse) => {
+  const systemPrompt = "You are a 'Finalizer Agent'. Combine the original prompt and enhancement keywords into a single, powerful, cohesive final prompt. Return ONLY the final prompt.";
+  const mainPrompt = `Original: ${prompt}
+Style: ${style}
+Lighting: ${lighting}
+Focus: ${focus}
+Details: ${details}`;
+  return callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
 };
-var _generateImagesWithDigenAI = async (prompt, aspectRatio, log, onRequest, onResponse) => {
-  log("[API Strategy] Primary image generator failed. Switching to Digen AI.");
-  const aspectRatioMap = {
-    "1:1": "1:1",
-    "16:9": "16:9",
-    "1920:1080": "16:9",
-    "4:3": "16:9",
-    "9:16": "9:16",
-    "1080:1920": "9:16",
-    "3:4": "9:16"
-  };
-  const digenAspectRatio = aspectRatioMap[aspectRatio] || "1:1";
-  onRequest();
-  const generateResponse = await fetch(`${DIGEN_API_URL}/generate-image`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      prompt,
-      aspect_ratio: digenAspectRatio,
-      password: DIGEN_API_PASSWORD
-    })
-  });
-  if (!generateResponse.ok) {
-    onResponse();
-    throw new Error(`Digen AI image generation request failed with status ${generateResponse.status}`);
-  }
-  const generateData = await generateResponse.json();
-  const jobId = generateData.job_id;
-  if (!jobId) {
-    onResponse();
-    throw new Error("Digen AI did not return a job_id.");
-  }
-  log(`[Digen AI] Image generation job queued. Job ID: ${jobId}`);
-  const startTime = Date.now();
-  while (Date.now() - startTime < DIGEN_POLL_TIMEOUT_MS) {
-    await new Promise((resolve) => setTimeout(resolve, DIGEN_POLL_INTERVAL_MS));
-    const statusResponse = await fetch(`${DIGEN_API_URL}/get-status/${jobId}`);
-    if (!statusResponse.ok) {
-      log(`[Digen AI] Polling failed with status ${statusResponse.status}. Retrying...`);
-      continue;
-    }
-    const statusData = await statusResponse.json();
-    switch (statusData.status) {
-      case "complete":
-        onResponse();
-        log("[Digen AI] Job complete. Validating response...");
-        if (statusData.result && Array.isArray(statusData.result) && statusData.result.length > 0) {
-          const firstItem = statusData.result[0];
-          if (typeof firstItem === "object" && firstItem !== null && typeof firstItem.image === "string") {
-            log("[Digen AI] Response is an array of image/thumbnail objects. Extracting image URLs.");
-            const urls = statusData.result.map((item) => item.image).filter(Boolean);
-            if (urls.length > 0) {
-              return urls;
-            }
-          }
-          if (typeof firstItem === "object" && firstItem !== null && typeof firstItem.url === "string") {
-            log("[Digen AI] Response is an array of URL objects. Extracting URLs.");
-            const urls = statusData.result.map((item) => item.url).filter(Boolean);
-            if (urls.length > 0) {
-              return urls;
-            }
-          }
-          if (typeof firstItem === "string") {
-            log("[Digen AI] Response is an array of strings. Returning URLs.");
-            return statusData.result;
-          }
-        }
-        const errorDetail = `Digen AI job finished, but the response format was unexpected. Expected an array of strings, {url: string} objects, or {image: string} objects. Raw server response: ${JSON.stringify(statusData)}`;
-        log(`[Digen AI Error] ${errorDetail}`);
-        throw new Error(errorDetail);
-      case "error":
-        onResponse();
-        throw new Error(`Digen AI job failed: ${statusData.error}`);
-      case "processing":
-        log("[Digen AI] Job is processing...");
-        break;
-      case "queued":
-        log(`[Digen AI] Job is queued at position ${statusData.queue_position}...`);
-        break;
-      default:
-        log(`[Digen AI] Unknown status: ${statusData.status}`);
-    }
-  }
-  onResponse();
-  throw new Error("Digen AI job timed out after 5 minutes.");
+var generateRandomImagePrompt = (log, onRequest, onResponse) => {
+  const systemPrompt = "You are a creative AI. Generate a single, interesting, and visually descriptive image prompt. Return ONLY the prompt text.";
+  return callApiOrchestrator(systemPrompt, "Surprise me.", log, onRequest, onResponse);
 };
-var generateImages = async (prompt, aspectRatio, count, log, onRequest, onResponse) => {
-  try {
-    log("[API Strategy] Attempting image generation with primary API (Pollinations).");
-    const [w, h] = aspectRatio.split(":").map(Number);
-    let width, height;
-    if (aspectRatio === "1920:1080") {
-      width = 1920;
-      height = 1080;
-    } else if (aspectRatio === "1080:1920") {
-      width = 1080;
-      height = 1920;
-    } else {
-      if (w > h) {
-        width = 1024;
-        height = Math.round(1024 * (h / w));
-      } else {
-        height = 1024;
-        width = Math.round(1024 * (w / h));
+var generateImages = async (prompt, aspectRatio, numberOfImages, log, onRequest, onResponse) => {
+  onRequest?.();
+  const dimensions = {
+    "1:1": { width: 1024, height: 1024 },
+    "16:9": { width: 1024, height: 576 },
+    "9:16": { width: 576, height: 1024 },
+    "4:3": { width: 1024, height: 768 },
+    "3:4": { width: 768, height: 1024 },
+    "1920:1080": { width: 1920, height: 1080 },
+    "1080:1920": { width: 1080, height: 1920 }
+  }[aspectRatio] || { width: 1024, height: 1024 };
+  const imagePromises = [];
+  for (let i = 0; i < numberOfImages; i++) {
+    imagePromises.push((async () => {
+      await rateLimitImageApi(log);
+      log(`Generating image ${i + 1}/${numberOfImages}...`);
+      const imageUrl = generateImageUrl({ prompt, ...dimensions, seed: Math.floor(Math.random() * 1e6) });
+      const response = await fetch(imageUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch image from ${imageUrl}: ${response.statusText}`);
       }
-    }
-    const imageUrls = [];
-    for (let i = 0; i < count; i++) {
-      const imageUrl = generateImageUrl({ prompt, width, height, seed: Math.floor(Math.random() * 1e6) });
-      imageUrls.push(imageUrl);
-    }
-    if (imageUrls.length > 0) {
-      log("[API Strategy] Validating one generated image URL to check API health...");
-      onRequest();
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15e3);
-      const testResponse = await fetch(imageUrls[0], { signal: controller.signal });
-      clearTimeout(timeoutId);
-      const contentType = testResponse.headers.get("Content-Type");
-      if (!testResponse.ok || !contentType || !contentType.startsWith("image/")) {
-        const errorBody = await testResponse.text().catch(() => "Could not read error body.");
-        log(`[API Error - Primary Health Check] Status: ${testResponse.status}, Content-Type: ${contentType}, Body: ${errorBody.substring(0, 100)}`);
-        throw new Error(`Primary API health check failed. Status: ${testResponse.status}, Content-Type: ${contentType}`);
-      }
-      onResponse();
-      log("[API Strategy] Primary API health check passed.");
-    }
-    return imageUrls;
+      const blob = await response.blob();
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    })());
+  }
+  try {
+    const results = await Promise.all(imagePromises);
+    onResponse?.();
+    return results;
   } catch (error) {
-    log(`[API Strategy] Primary image API failed: ${error instanceof Error ? error.message : "Unknown error"}.`);
-    onResponse();
-    return await _generateImagesWithDigenAI(prompt, aspectRatio, log, onRequest, onResponse);
+    onResponse?.();
+    throw error;
   }
 };
-var generateRandomImagePrompt = async (log, onRequest, onResponse) => {
-  const systemPrompt = `You are a creative AI that generates interesting, short, and visually descriptive prompts for an image generation model.
 
-**CRITICAL RULES:**
-1.  Your response MUST ONLY be the prompt text.
-2.  Do NOT add any commentary or quotes.
-3.  The prompt should be 5-15 words.
-4.  Be creative and surprising!`;
-  const mainPrompt = "Generate a random image prompt.";
-  return await callApiOrchestrator(systemPrompt, mainPrompt, log, onRequest, onResponse);
+// components/BuilderMode.tsx
+import { Fragment as Fragment7, jsx as jsx26, jsxs as jsxs24 } from "react/jsx-runtime";
+var agentIcons = {
+  "workflow-input": /* @__PURE__ */ jsx26(BotIcon, { className: "w-5 h-5 text-emerald-400" }),
+  "workflow-output": /* @__PURE__ */ jsx26(BotIcon, { className: "w-5 h-5 text-red-400" }),
+  "project-builder": /* @__PURE__ */ jsx26(CodeSquareIcon, { className: "w-5 h-5 text-amber-400" }),
+  "writer": /* @__PURE__ */ jsx26(PencilIcon, { className: "w-5 h-5 text-sky-400" }),
+  "coder": /* @__PURE__ */ jsx26(CodeIcon, { className: "w-5 h-5 text-emerald-400" }),
+  "humanizer": /* @__PURE__ */ jsx26(Wand2Icon, { className: "w-5 h-5 text-rose-400" }),
+  "summarizer": /* @__PURE__ */ jsx26(BrainCircuitIcon, { className: "w-5 h-5 text-blue-400" }),
+  "refactor": /* @__PURE__ */ jsx26(GitMergeIcon, { className: "w-5 h-5 text-amber-400" }),
+  "content-planner": /* @__PURE__ */ jsx26(FileTextIcon, { className: "w-5 h-5 text-fuchsia-400" }),
+  "image-generator": /* @__PURE__ */ jsx26(ImageIcon, { className: "w-5 h-5 text-teal-400" }),
+  "data-extractor": /* @__PURE__ */ jsx26(ClipboardCheckIcon, { className: "w-5 h-5 text-purple-400" }),
+  "conditional-logic": /* @__PURE__ */ jsx26(GitBranchPlusIcon, { className: "w-5 h-5 text-orange-400" })
+};
+var availableAgents = [
+  { type: "workflow-input", name: "Workflow Input", description: "Starting point for your workflow. Provides the initial text or data." },
+  { type: "writer", name: "Writer Agent", description: "Generates text content like articles or blog posts." },
+  { type: "coder", name: "Coder Agent", description: "Generates code in various languages." },
+  { type: "humanizer", name: "Humanizer Agent", description: "Refines text to sound more natural and less robotic." },
+  { type: "summarizer", name: "Summarizer Agent", description: "Creates a concise summary of a long text." },
+  { type: "refactor", name: "Code Refactor Agent", description: "Applies specific changes to existing code." },
+  { type: "content-planner", name: "Content Planner", description: "Creates a structural outline for a piece of content." },
+  { type: "image-generator", name: "Image Generator", description: "Takes a text prompt and generates an image, outputting its data URL." },
+  { type: "data-extractor", name: "Data Extractor", description: "Parses unstructured text and extracts structured data based on a JSON schema you provide." },
+  { type: "conditional-logic", name: "Conditional Node", description: "Evaluates a condition and routes the workflow down a 'true' or 'false' path." },
+  { type: "project-builder", name: "Project Builder Node", description: "Takes a high-level prompt and generates a complete file structure in the Editor workspace." },
+  { type: "workflow-output", name: "Workflow Output", description: "The final result of your workflow execution." }
+];
+var PropertiesPanel = ({ selectedNode, onNodeConfigChange, onDeleteNode }) => {
+  if (!selectedNode) {
+    return /* @__PURE__ */ jsx26("div", { className: "h-full flex flex-col items-center justify-center text-center text-gray-500 p-4", children: /* @__PURE__ */ jsxs24("div", { children: [
+      /* @__PURE__ */ jsx26(LayoutDashboardIcon, { className: "w-12 h-12 mx-auto mb-2" }),
+      /* @__PURE__ */ jsx26("h3", { className: "font-semibold", children: "Properties" }),
+      /* @__PURE__ */ jsx26("p", { className: "text-sm", children: "Select a node on the canvas to view and edit its properties." })
+    ] }) });
+  }
+  const nodeInfo = availableAgents.find((a) => a.type === selectedNode.type);
+  return /* @__PURE__ */ jsxs24("div", { className: "h-full flex flex-col p-4 space-y-4 overflow-y-auto", children: [
+    /* @__PURE__ */ jsxs24("div", { children: [
+      /* @__PURE__ */ jsx26("h3", { className: "text-lg font-bold text-white mb-1", children: nodeInfo?.name }),
+      /* @__PURE__ */ jsxs24("p", { className: "text-xs text-gray-400 font-mono mb-2", children: [
+        "ID: ",
+        selectedNode.id
+      ] }),
+      /* @__PURE__ */ jsx26("p", { className: "text-sm text-gray-300", children: nodeInfo?.description })
+    ] }),
+    /* @__PURE__ */ jsxs24("div", { className: "border-t border-gray-700 pt-4 space-y-4", children: [
+      selectedNode.type === "workflow-input" && /* @__PURE__ */ jsxs24("div", { children: [
+        /* @__PURE__ */ jsx26("label", { htmlFor: "prompt", className: "block text-sm font-medium text-gray-300 mb-1", children: "Input Data" }),
+        /* @__PURE__ */ jsx26(
+          "textarea",
+          {
+            id: "prompt",
+            value: selectedNode.config.prompt || "",
+            onChange: (e) => onNodeConfigChange(selectedNode.id, { ...selectedNode.config, prompt: e.target.value }),
+            rows: 8,
+            className: "w-full bg-gray-900 border border-gray-600 rounded-md p-2 text-sm focus:ring-2 focus:ring-indigo-500",
+            placeholder: "Enter the initial text or data to start the workflow..."
+          }
+        )
+      ] }),
+      ["writer", "coder", "humanizer", "summarizer", "refactor", "content-planner", "project-builder", "image-generator"].includes(selectedNode.type) && /* @__PURE__ */ jsxs24("div", { children: [
+        /* @__PURE__ */ jsx26("label", { htmlFor: "prompt", className: "block text-sm font-medium text-gray-300 mb-1", children: selectedNode.type === "project-builder" ? "Project Description" : "Agent Instructions (Prompt)" }),
+        /* @__PURE__ */ jsx26(
+          "textarea",
+          {
+            id: "prompt",
+            value: selectedNode.config.prompt || "",
+            onChange: (e) => onNodeConfigChange(selectedNode.id, { ...selectedNode.config, prompt: e.target.value }),
+            rows: 8,
+            className: "w-full bg-gray-900 border border-gray-600 rounded-md p-2 text-sm focus:ring-2 focus:ring-indigo-500",
+            placeholder: selectedNode.type === "project-builder" ? "Describe the project you want to build (e.g., 'A simple to-do list app'). The input to this node will be used as additional context." : selectedNode.type === "image-generator" ? "Describe the image to generate..." : "Give specific instructions for this agent. Use {{input}} to refer to data from the previous node."
+          }
+        )
+      ] }),
+      selectedNode.type === "data-extractor" && /* @__PURE__ */ jsxs24(Fragment7, { children: [
+        /* @__PURE__ */ jsxs24("div", { children: [
+          /* @__PURE__ */ jsx26("label", { htmlFor: "prompt", className: "block text-sm font-medium text-gray-300 mb-1", children: "Agent Instructions (Prompt)" }),
+          /* @__PURE__ */ jsx26(
+            "textarea",
+            {
+              id: "prompt",
+              value: selectedNode.config.prompt || "",
+              onChange: (e) => onNodeConfigChange(selectedNode.id, { ...selectedNode.config, prompt: e.target.value }),
+              rows: 4,
+              className: "w-full bg-gray-900 border border-gray-600 rounded-md p-2 text-sm focus:ring-2 focus:ring-indigo-500",
+              placeholder: "Optional instructions for the extractor. The primary guide is the schema below."
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs24("div", { children: [
+          /* @__PURE__ */ jsx26("label", { htmlFor: "jsonSchema", className: "block text-sm font-medium text-gray-300 mb-1", children: "JSON Schema" }),
+          /* @__PURE__ */ jsx26(
+            "textarea",
+            {
+              id: "jsonSchema",
+              value: selectedNode.config.jsonSchema || "",
+              onChange: (e) => onNodeConfigChange(selectedNode.id, { ...selectedNode.config, jsonSchema: e.target.value }),
+              rows: 8,
+              className: "w-full bg-gray-900 border border-gray-600 rounded-md p-2 text-sm font-mono focus:ring-2 focus:ring-indigo-500",
+              placeholder: `{
+  "name": "string",
+  "email": "string"
+}`
+            }
+          )
+        ] })
+      ] }),
+      selectedNode.type === "conditional-logic" && /* @__PURE__ */ jsxs24("div", { children: [
+        /* @__PURE__ */ jsx26("label", { htmlFor: "condition", className: "block text-sm font-medium text-gray-300 mb-1", children: "Condition" }),
+        /* @__PURE__ */ jsx26(
+          "input",
+          {
+            type: "text",
+            id: "condition",
+            value: selectedNode.config.condition || "",
+            onChange: (e) => onNodeConfigChange(selectedNode.id, { ...selectedNode.config, condition: e.target.value }),
+            className: "w-full bg-gray-900 border border-gray-600 rounded-md p-2 text-sm focus:ring-2 focus:ring-indigo-500",
+            placeholder: "e.g., Does the input contain the word 'error'?"
+          }
+        )
+      ] })
+    ] }),
+    selectedNode.status === "completed" && selectedNode.result && /* @__PURE__ */ jsxs24("div", { className: "border-t border-gray-700 pt-4 space-y-2", children: [
+      /* @__PURE__ */ jsx26("h4", { className: "text-md font-semibold text-gray-200", children: "Node Result" }),
+      selectedNode.type === "image-generator" ? /* @__PURE__ */ jsx26("img", { src: selectedNode.result, alt: "Generated image", className: "rounded-md border border-gray-600 w-full" }) : /* @__PURE__ */ jsx26("pre", { className: "whitespace-pre-wrap text-sm text-gray-200 bg-gray-900/50 p-3 rounded-md max-h-60 overflow-y-auto", children: /* @__PURE__ */ jsx26("code", { children: selectedNode.result }) })
+    ] }),
+    /* @__PURE__ */ jsx26("div", { className: "flex-grow" }),
+    /* @__PURE__ */ jsx26("div", { className: "border-t border-gray-700 pt-4", children: /* @__PURE__ */ jsxs24(
+      "button",
+      {
+        onClick: () => onDeleteNode(selectedNode.id),
+        className: "w-full flex items-center justify-center gap-2 px-3 py-2 text-sm bg-red-800/50 hover:bg-red-700/50 text-red-300 font-semibold rounded-md transition-colors",
+        children: [
+          /* @__PURE__ */ jsx26(Trash2Icon, { className: "w-4 h-4" }),
+          " Delete Node"
+        ]
+      }
+    ) })
+  ] });
+};
+var ResultsWorkspace = ({ result, onClose }) => {
+  const [isCopied, setIsCopied] = useState16(false);
+  const handleCopy = () => {
+    if (result?.content) {
+      navigator.clipboard.writeText(result.content).then(() => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2e3);
+      });
+    }
+  };
+  if (!result) return null;
+  return /* @__PURE__ */ jsxs24("div", { className: "h-full flex flex-col bg-gray-800/80 backdrop-blur-sm", children: [
+    /* @__PURE__ */ jsxs24("header", { className: "flex-shrink-0 p-2 border-b border-gray-700 flex justify-between items-center", children: [
+      /* @__PURE__ */ jsx26("h3", { className: "text-sm font-semibold text-gray-300 px-2", children: "Results Workspace" }),
+      /* @__PURE__ */ jsxs24("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsx26("button", { onClick: handleCopy, className: "text-xs px-2 py-1 rounded bg-gray-700 hover:bg-gray-600", children: isCopied ? "Copied!" : "Copy" }),
+        /* @__PURE__ */ jsx26("button", { onClick: onClose, className: "p-1 rounded text-gray-400 hover:bg-gray-700", children: /* @__PURE__ */ jsx26(XIcon, { className: "w-4 h-4" }) })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxs24("div", { className: "flex-grow p-4 overflow-y-auto", children: [
+      /* @__PURE__ */ jsxs24("p", { className: "text-xs text-gray-400 mb-2", children: [
+        "Result from Output Node (",
+        result.nodeId.substring(0, 8),
+        "...)"
+      ] }),
+      /* @__PURE__ */ jsx26("pre", { className: "whitespace-pre-wrap text-sm text-gray-200 bg-gray-900/50 p-3 rounded-md", children: /* @__PURE__ */ jsx26("code", { children: result.content }) })
+    ] })
+  ] });
+};
+var MIN_PANEL_PERCENT = 15;
+var BuilderMode = (props) => {
+  const { nodes, setNodes, connections, setConnections, onWriteToFile, files } = props;
+  const [selectedNodeId, setSelectedNodeId] = useState16(null);
+  const [draggingNode, setDraggingNode] = useState16(null);
+  const [connecting, setConnecting] = useState16(null);
+  const [drawingConnection, setDrawingConnection] = useState16(null);
+  const [isExecuting, setIsExecuting] = useState16(false);
+  const [isPaletteCollapsed, setIsPaletteCollapsed] = useState16(false);
+  const [isEditorVisible, setIsEditorVisible] = useState16(false);
+  const [outputResult, setOutputResult] = useState16(null);
+  const [mainPanelSizes, setMainPanelSizes] = useState16([70, 30]);
+  const [verticalSizes, setVerticalSizes] = useState16([70, 30]);
+  const canvasRef = useRef10(null);
+  const mainAreaRef = useRef10(null);
+  const horizontalAreaRef = useRef10(null);
+  const [isDragging, setIsDragging] = useState16(null);
+  const initialSizesRef = useRef10([]);
+  const initialPosRef = useRef10({ x: 0, y: 0 });
+  const selectedNode = nodes.find((n) => n.id === selectedNodeId);
+  useEffect14(() => {
+    if (files.length > 0 && !isEditorVisible) {
+      setIsEditorVisible(true);
+    }
+  }, [files.length, isEditorVisible]);
+  const handleMouseDown = useCallback3((e, type) => {
+    e.preventDefault();
+    setIsDragging(type);
+    if (type === "horizontal") {
+      initialSizesRef.current = [...mainPanelSizes];
+    } else {
+      initialSizesRef.current = [...verticalSizes];
+    }
+    initialPosRef.current = { x: e.clientX, y: e.clientY };
+  }, [mainPanelSizes, verticalSizes]);
+  const handleMouseMove = useCallback3((e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    if (isDragging === "horizontal") {
+      if (!horizontalAreaRef.current) return;
+      const delta = (e.clientX - initialPosRef.current.x) / horizontalAreaRef.current.offsetWidth * 100;
+      const newLeftSize = Math.max(MIN_PANEL_PERCENT, Math.min(100 - MIN_PANEL_PERCENT, initialSizesRef.current[0] + delta));
+      const newRightSize = 100 - newLeftSize;
+      setMainPanelSizes([newLeftSize, newRightSize]);
+    } else {
+      if (!mainAreaRef.current) return;
+      const delta = (e.clientY - initialPosRef.current.y) / mainAreaRef.current.offsetHeight * 100;
+      const newTopSize = Math.max(MIN_PANEL_PERCENT, Math.min(100 - MIN_PANEL_PERCENT, initialSizesRef.current[0] + delta));
+      const newBottomSize = 100 - newTopSize;
+      setVerticalSizes([newTopSize, newBottomSize]);
+    }
+  }, [isDragging]);
+  const handleMouseUp = useCallback3(() => {
+    setIsDragging(null);
+  }, []);
+  const handleAddNode = (type) => {
+    const newNode = {
+      id: crypto.randomUUID(),
+      type,
+      position: { x: 150, y: 150 },
+      config: { prompt: "" },
+      status: "idle"
+    };
+    setNodes((prev) => [...prev, newNode]);
+  };
+  const handleNodeMouseDown = (e, id) => {
+    e.stopPropagation();
+    const node = nodes.find((n) => n.id === id);
+    if (node && canvasRef.current) {
+      const canvasRect = canvasRef.current.getBoundingClientRect();
+      setDraggingNode({
+        id,
+        offset: {
+          x: e.clientX - node.position.x - canvasRect.left,
+          y: e.clientY - node.position.y - canvasRect.top
+        }
+      });
+    }
+  };
+  const handleCanvasMouseMove = (e) => {
+    if (draggingNode && canvasRef.current) {
+      const canvasRect = canvasRef.current.getBoundingClientRect();
+      const newX = e.clientX - draggingNode.offset.x - canvasRect.left;
+      const newY = e.clientY - draggingNode.offset.y - canvasRect.top;
+      setNodes((prev) => prev.map(
+        (n) => n.id === draggingNode.id ? { ...n, position: { x: newX, y: newY } } : n
+      ));
+    }
+    if (connecting && drawingConnection && canvasRef.current) {
+      const canvasRect = canvasRef.current.getBoundingClientRect();
+      setDrawingConnection({
+        ...drawingConnection,
+        endPos: {
+          x: e.clientX - canvasRect.left,
+          y: e.clientY - canvasRect.top
+        }
+      });
+    }
+  };
+  const handleCanvasMouseUp = () => {
+    setDraggingNode(null);
+    setConnecting(null);
+    setDrawingConnection(null);
+  };
+  const handleDeleteNode = useCallback3((id) => {
+    setNodes((prev) => prev.filter((n) => n.id !== id));
+    setConnections((prev) => prev.filter((c) => c.sourceNodeId !== id && c.targetNodeId !== id));
+    if (selectedNodeId === id) {
+      setSelectedNodeId(null);
+    }
+  }, [selectedNodeId, setNodes, setConnections]);
+  const handleClearCanvas = () => {
+    if (isExecuting) return;
+    if (window.confirm("Are you sure you want to clear the entire workflow?")) {
+      setNodes([]);
+      setConnections([]);
+      setSelectedNodeId(null);
+      setOutputResult(null);
+    }
+  };
+  const handleConnectionStart = (e, sourceNodeId, sourceHandleId) => {
+    e.stopPropagation();
+    const sourceNode = nodes.find((n) => n.id === sourceNodeId);
+    if (!sourceNode || !canvasRef.current) return;
+    let handleYOffset = 30;
+    if (sourceHandleId === "true") handleYOffset = 20;
+    if (sourceHandleId === "false") handleYOffset = 40;
+    const startPos = {
+      x: sourceNode.position.x + 208,
+      // Node width
+      y: sourceNode.position.y + handleYOffset
+    };
+    setConnecting({ sourceNodeId, sourceHandleId });
+    setDrawingConnection({ startPos, endPos: startPos });
+  };
+  const handleConnectionEnd = (e, targetNodeId) => {
+    e.stopPropagation();
+    if (connecting && connecting.sourceNodeId !== targetNodeId) {
+      const existingConnection = connections.find((c) => c.sourceNodeId === connecting.sourceNodeId && c.sourceHandleId === connecting.sourceHandleId && c.targetNodeId === targetNodeId);
+      if (!existingConnection) {
+        const newConnection = {
+          id: crypto.randomUUID(),
+          sourceNodeId: connecting.sourceNodeId,
+          sourceHandleId: connecting.sourceHandleId,
+          targetNodeId
+        };
+        setConnections((prev) => [...prev, newConnection]);
+      }
+    }
+    setConnecting(null);
+    setDrawingConnection(null);
+  };
+  const handleNodeConfigChange = (id, newConfig) => {
+    setNodes((prev) => prev.map((n) => n.id === id ? { ...n, config: newConfig } : n));
+  };
+  const handleRunWorkflow = async () => {
+    setIsExecuting(true);
+    setOutputResult(null);
+    setNodes((prev) => prev.map((n) => ({ ...n, status: "idle", result: "" })));
+    const results = /* @__PURE__ */ new Map();
+    const completedNodes = /* @__PURE__ */ new Set();
+    const runningNodes = /* @__PURE__ */ new Set();
+    let iteration = 0;
+    const MAX_ITERATIONS = nodes.length + 5;
+    while (completedNodes.size < nodes.length && iteration < MAX_ITERATIONS) {
+      iteration++;
+      const readyNodes = nodes.filter((node) => {
+        if (completedNodes.has(node.id) || runningNodes.has(node.id)) return false;
+        const parentConnections = connections.filter((c) => c.targetNodeId === node.id);
+        if (parentConnections.length === 0) return true;
+        const allParentsCompleted = parentConnections.every((conn) => completedNodes.has(conn.sourceNodeId));
+        if (!allParentsCompleted) return false;
+        return parentConnections.every((conn) => {
+          const parentNode = nodes.find((n) => n.id === conn.sourceNodeId);
+          if (parentNode.type === "conditional-logic") {
+            const parentResult = results.get(parentNode.id);
+            return parentResult === conn.sourceHandleId;
+          }
+          return true;
+        });
+      });
+      if (readyNodes.length === 0 && runningNodes.size === 0) {
+        break;
+      }
+      readyNodes.forEach((node) => {
+        runningNodes.add(node.id);
+        setNodes((prev) => prev.map((n) => n.id === node.id ? { ...n, status: "running" } : n));
+      });
+      await Promise.all(readyNodes.map(async (node) => {
+        try {
+          const parentConnections = connections.filter((c) => c.targetNodeId === node.id);
+          const validInputs = parentConnections.map((c) => {
+            const parentNode = nodes.find((n) => n.id === c.sourceNodeId);
+            if (parentNode.type === "conditional-logic") {
+              return results.get(parentNode.id) === c.sourceHandleId ? results.get(c.sourceNodeId) : null;
+            }
+            return results.get(c.sourceNodeId);
+          }).filter((res) => res != null);
+          const input = validInputs.join("\n\n---\n\n");
+          let output = "";
+          switch (node.type) {
+            case "workflow-input":
+              output = node.config.prompt || "";
+              break;
+            case "workflow-output":
+              output = input;
+              break;
+            case "project-builder":
+              output = await generateProjectFromDescription(node.config.prompt || "Build a project", onWriteToFile, console.log);
+              break;
+            case "image-generator":
+              output = await executeImageGenerator(node.config.prompt || "", console.log);
+              break;
+            case "data-extractor":
+              output = await executeDataExtractor(input, node.config.jsonSchema || "{}", console.log);
+              break;
+            case "conditional-logic":
+              output = await evaluateCondition(input, node.config.condition || "", console.log);
+              break;
+            default:
+              output = await executeBuilderAgent(node, input, console.log);
+          }
+          results.set(node.id, output);
+          completedNodes.add(node.id);
+          runningNodes.delete(node.id);
+          setNodes((prev) => prev.map((n) => n.id === node.id ? { ...n, status: "completed", result: output } : n));
+        } catch (error) {
+          const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+          completedNodes.add(node.id);
+          runningNodes.delete(node.id);
+          setNodes((prev) => prev.map((n) => n.id === node.id ? { ...n, status: "failed", result: errorMessage } : n));
+          console.error(`Error executing node ${node.id}:`, error);
+        }
+      }));
+    }
+    const outputNode = nodes.find((n) => n.type === "workflow-output");
+    if (outputNode && results.has(outputNode.id)) {
+      setOutputResult({ nodeId: outputNode.id, content: results.get(outputNode.id) });
+    }
+    setIsExecuting(false);
+  };
+  return /* @__PURE__ */ jsxs24(
+    "div",
+    {
+      className: "flex h-full bg-gray-900 text-gray-200 overflow-hidden",
+      style: { cursor: isDragging ? isDragging === "horizontal" ? "col-resize" : "row-resize" : "auto" },
+      onMouseMove: handleMouseMove,
+      onMouseUp: handleMouseUp,
+      onMouseLeave: handleMouseUp,
+      children: [
+        /* @__PURE__ */ jsxs24("div", { className: `h-full flex flex-col border-r border-gray-700 bg-gray-800/50 transition-all duration-300 ease-in-out ${isPaletteCollapsed ? "w-16" : "w-80"}`, children: [
+          /* @__PURE__ */ jsxs24("header", { className: `p-4 border-b border-gray-700 flex-shrink-0 flex items-center ${isPaletteCollapsed ? "justify-center" : "justify-between"}`, children: [
+            !isPaletteCollapsed && /* @__PURE__ */ jsx26("h2", { className: "text-lg font-bold text-white", children: "Agent Palette" }),
+            /* @__PURE__ */ jsx26("button", { onClick: () => setIsPaletteCollapsed(!isPaletteCollapsed), className: "p-1 rounded-md text-gray-400 hover:bg-gray-700", children: /* @__PURE__ */ jsx26(ChevronRightIcon, { className: `w-5 h-5 transition-transform duration-300 ${!isPaletteCollapsed ? "rotate-180" : ""}` }) })
+          ] }),
+          /* @__PURE__ */ jsx26("div", { className: "flex-grow overflow-y-auto p-2", children: /* @__PURE__ */ jsx26("ul", { className: "space-y-2", children: availableAgents.map((agent) => /* @__PURE__ */ jsx26("li", { children: /* @__PURE__ */ jsxs24(
+            "button",
+            {
+              onClick: () => handleAddNode(agent.type),
+              disabled: isExecuting,
+              className: "w-full flex items-start gap-3 p-3 rounded-md bg-gray-900/50 hover:bg-gray-700/50 border border-gray-700 transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed",
+              children: [
+                /* @__PURE__ */ jsx26("div", { className: "flex-shrink-0 mt-0.5", children: agentIcons[agent.type] || /* @__PURE__ */ jsx26(BotIcon, { className: "w-5 h-5 text-gray-400" }) }),
+                !isPaletteCollapsed && /* @__PURE__ */ jsxs24("div", { children: [
+                  /* @__PURE__ */ jsx26("h3", { className: "font-semibold text-white", children: agent.name }),
+                  /* @__PURE__ */ jsx26("p", { className: "text-xs text-gray-400", children: agent.description })
+                ] })
+              ]
+            }
+          ) }, agent.type)) }) })
+        ] }),
+        /* @__PURE__ */ jsxs24("div", { ref: mainAreaRef, className: "flex-grow flex flex-col min-h-0", children: [
+          /* @__PURE__ */ jsxs24("div", { ref: horizontalAreaRef, className: "flex-grow flex min-h-0", style: { height: `${outputResult ? verticalSizes[0] : 100}%` }, children: [
+            /* @__PURE__ */ jsx26("div", { className: "flex-grow flex flex-col", style: { width: `${mainPanelSizes[0]}%` }, children: /* @__PURE__ */ jsxs24(
+              "div",
+              {
+                ref: canvasRef,
+                className: "flex-grow h-full relative overflow-auto bg-[radial-gradient(#4b5563_1px,transparent_1px)] [background-size:24px_24px]",
+                onMouseMove: handleCanvasMouseMove,
+                onMouseUp: handleCanvasMouseUp,
+                onClick: () => setSelectedNodeId(null),
+                children: [
+                  /* @__PURE__ */ jsxs24("svg", { className: "absolute top-0 left-0 w-full h-full pointer-events-none", style: { zIndex: 1, minWidth: "2000px", minHeight: "2000px" }, children: [
+                    connections.map((conn) => {
+                      const sourceNode = nodes.find((n) => n.id === conn.sourceNodeId);
+                      const targetNode = nodes.find((n) => n.id === conn.targetNodeId);
+                      if (!sourceNode || !targetNode) return null;
+                      const x1 = sourceNode.position.x + 208;
+                      let y1 = sourceNode.position.y + 30;
+                      if (conn.sourceHandleId === "true") y1 = sourceNode.position.y + 20;
+                      if (conn.sourceHandleId === "false") y1 = sourceNode.position.y + 40;
+                      const x2 = targetNode.position.x;
+                      const y2 = targetNode.position.y + 30;
+                      return /* @__PURE__ */ jsx26(
+                        "path",
+                        {
+                          d: `M ${x1} ${y1} C ${x1 + 60} ${y1}, ${x2 - 60} ${y2}, ${x2} ${y2}`,
+                          stroke: "#a78bfa",
+                          strokeWidth: "2",
+                          fill: "none"
+                        },
+                        conn.id
+                      );
+                    }),
+                    drawingConnection && /* @__PURE__ */ jsx26(
+                      "path",
+                      {
+                        d: `M ${drawingConnection.startPos.x} ${drawingConnection.startPos.y} L ${drawingConnection.endPos.x} ${drawingConnection.endPos.y}`,
+                        stroke: "#f472b6",
+                        strokeWidth: "2",
+                        strokeDasharray: "5,5",
+                        fill: "none"
+                      }
+                    )
+                  ] }),
+                  nodes.map((node) => {
+                    const statusClass = {
+                      "running": "border-yellow-500 animate-pulse",
+                      "completed": "border-green-500",
+                      "failed": "border-red-500",
+                      "idle": "border-gray-700"
+                    }[node.status || "idle"];
+                    return /* @__PURE__ */ jsxs24(
+                      "div",
+                      {
+                        className: `absolute bg-gray-800 border-2 rounded-lg shadow-xl w-52 cursor-grab ${selectedNodeId === node.id ? "border-indigo-500 ring-2 ring-indigo-500" : statusClass}`,
+                        style: { top: node.position.y, left: node.position.x, zIndex: 10 },
+                        onMouseDown: (e) => handleNodeMouseDown(e, node.id),
+                        onClick: (e) => {
+                          e.stopPropagation();
+                          setSelectedNodeId(node.id);
+                        },
+                        children: [
+                          node.type === "conditional-logic" ? /* @__PURE__ */ jsxs24(Fragment7, { children: [
+                            /* @__PURE__ */ jsx26("div", { onMouseDown: (e) => handleConnectionStart(e, node.id, "true"), title: "True Path", className: "absolute right-[-8px] top-4 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900 cursor-crosshair hover:scale-125 transition-transform flex items-center justify-center text-xs font-bold text-black", children: "T" }),
+                            /* @__PURE__ */ jsx26("div", { onMouseDown: (e) => handleConnectionStart(e, node.id, "false"), title: "False Path", className: "absolute right-[-8px] top-10 w-4 h-4 bg-red-500 rounded-full border-2 border-gray-900 cursor-crosshair hover:scale-125 transition-transform flex items-center justify-center text-xs font-bold text-black", children: "F" })
+                          ] }) : node.type !== "workflow-output" && /* @__PURE__ */ jsx26("div", { onMouseDown: (e) => handleConnectionStart(e, node.id, "default"), title: "Drag to connect", className: "absolute right-[-8px] top-1/2 -translate-y-1/2 w-4 h-4 bg-fuchsia-500 rounded-full border-2 border-gray-900 cursor-crosshair hover:scale-125 transition-transform" }),
+                          node.type !== "workflow-input" && /* @__PURE__ */ jsx26("div", { onMouseUp: (e) => handleConnectionEnd(e, node.id), title: "Connect to this input", className: "absolute left-[-8px] top-1/2 -translate-y-1/2 w-4 h-4 bg-cyan-400 rounded-full border-2 border-gray-900 cursor-crosshair hover:scale-125 transition-transform" }),
+                          /* @__PURE__ */ jsxs24("div", { className: "p-3", children: [
+                            /* @__PURE__ */ jsxs24("div", { className: "flex items-center justify-between mb-2", children: [
+                              /* @__PURE__ */ jsxs24("div", { className: "flex items-center gap-2", children: [
+                                agentIcons[node.type] || /* @__PURE__ */ jsx26(BotIcon, { className: "w-5 h-5 text-gray-400" }),
+                                /* @__PURE__ */ jsx26("h4", { className: "font-bold text-sm truncate", children: availableAgents.find((a) => a.type === node.type)?.name || "Unknown" })
+                              ] }),
+                              /* @__PURE__ */ jsxs24("div", { className: "flex-shrink-0", children: [
+                                node.status === "running" && /* @__PURE__ */ jsx26(LoaderIcon, { className: "w-4 h-4 text-yellow-500" }),
+                                node.status === "completed" && /* @__PURE__ */ jsx26(CheckCircleIcon, { className: "w-4 h-4 text-green-500" }),
+                                node.status === "failed" && /* @__PURE__ */ jsx26(XCircleIcon, { className: "w-4 h-4 text-red-500" })
+                              ] })
+                            ] }),
+                            /* @__PURE__ */ jsx26("p", { className: "text-xs text-gray-400 truncate h-4", children: node.config.prompt || node.config.condition || `ID: ${node.id.substring(0, 8)}` })
+                          ] })
+                        ]
+                      },
+                      node.id
+                    );
+                  }),
+                  /* @__PURE__ */ jsxs24("div", { className: "absolute top-4 right-4 flex items-center gap-2 bg-gray-800/80 p-2 rounded-lg border border-gray-700 backdrop-blur-sm", style: { zIndex: 20 }, children: [
+                    /* @__PURE__ */ jsx26("button", { onClick: handleRunWorkflow, disabled: isExecuting, className: "flex items-center gap-2 px-3 py-1.5 text-sm bg-emerald-600 hover:bg-emerald-700 rounded-md font-semibold disabled:bg-gray-600 disabled:cursor-not-allowed", children: isExecuting ? /* @__PURE__ */ jsxs24(Fragment7, { children: [
+                      /* @__PURE__ */ jsx26(LoaderIcon, { className: "w-4 h-4" }),
+                      " Running..."
+                    ] }) : /* @__PURE__ */ jsxs24(Fragment7, { children: [
+                      /* @__PURE__ */ jsx26(PlayIcon, { className: "w-4 h-4" }),
+                      " Run"
+                    ] }) }),
+                    /* @__PURE__ */ jsxs24("button", { onClick: handleClearCanvas, disabled: isExecuting, className: "flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-600 hover:bg-gray-500 rounded-md disabled:opacity-50", children: [
+                      /* @__PURE__ */ jsx26(XCircleIcon, { className: "w-4 h-4" }),
+                      " Clear"
+                    ] })
+                  ] })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsx26(Resizer, { orientation: "horizontal", onMouseDown: (e) => handleMouseDown(e, "horizontal") }),
+            /* @__PURE__ */ jsx26("div", { className: "flex-shrink-0", style: { width: `${mainPanelSizes[1]}%` }, children: /* @__PURE__ */ jsx26("div", { className: "h-full flex flex-col border-l border-gray-700 bg-gray-800/50", children: isEditorVisible ? /* @__PURE__ */ jsxs24("div", { className: "flex-grow flex min-h-0", children: [
+              /* @__PURE__ */ jsx26("div", { className: "w-1/2 h-full border-r border-gray-700", children: /* @__PURE__ */ jsx26(
+                PropertiesPanel,
+                {
+                  selectedNode,
+                  onNodeConfigChange: handleNodeConfigChange,
+                  onDeleteNode: handleDeleteNode
+                }
+              ) }),
+              /* @__PURE__ */ jsxs24("div", { className: "w-1/2 h-full relative", children: [
+                /* @__PURE__ */ jsx26("button", { onClick: () => setIsEditorVisible(false), title: "Close Editor Panel", className: "absolute top-2 right-2 z-10 p-1 bg-gray-900/50 rounded-full text-gray-400 hover:text-white hover:bg-gray-700", children: /* @__PURE__ */ jsx26(XIcon, { className: "w-4 h-4" }) }),
+                /* @__PURE__ */ jsx26(EditorPanel, { ...props, isContentMode: false })
+              ] })
+            ] }) : /* @__PURE__ */ jsx26(
+              PropertiesPanel,
+              {
+                selectedNode,
+                onNodeConfigChange: handleNodeConfigChange,
+                onDeleteNode: handleDeleteNode
+              }
+            ) }) })
+          ] }),
+          outputResult && /* @__PURE__ */ jsxs24(Fragment7, { children: [
+            /* @__PURE__ */ jsx26(Resizer, { orientation: "vertical", onMouseDown: (e) => handleMouseDown(e, "vertical") }),
+            /* @__PURE__ */ jsx26("div", { className: "flex-shrink-0", style: { height: `${verticalSizes[1]}%` }, children: /* @__PURE__ */ jsx26(ResultsWorkspace, { result: outputResult, onClose: () => setOutputResult(null) }) })
+          ] })
+        ] })
+      ]
+    }
+  );
 };
 
 // services/settingsService.ts
@@ -6074,7 +6760,9 @@ function createDefaultSettings() {
       contentMode: unlocked,
       chatMode: unlocked,
       imageMode: unlocked,
-      canvasMode: unlocked
+      canvasMode: unlocked,
+      // FIX: Add missing 'builderMode' property to satisfy AppSettings type.
+      builderMode: unlocked
     },
     tier2: {
       coderLanguages: languageOptions.reduce((acc, lang) => {
@@ -6091,6 +6779,10 @@ function createDefaultSettings() {
       canvasMode: {
         fileAttachments: unlocked
       }
+    },
+    apiPreferences: {
+      primaryTextApi: "pollinations",
+      secondaryTextApi: "makulu"
     }
   };
 }
@@ -6134,8 +6826,8 @@ async function loadSettings() {
 }
 
 // App.tsx
-import { Fragment as Fragment7, jsx as jsx26, jsxs as jsxs24 } from "react/jsx-runtime";
-var MIN_PANEL_PERCENT = 10;
+import { Fragment as Fragment8, jsx as jsx27, jsxs as jsxs25 } from "react/jsx-runtime";
+var MIN_PANEL_PERCENT2 = 10;
 var MAX_CORRECTION_ATTEMPTS = 3;
 var MAX_REFACTOR_ATTEMPTS = 5;
 var initialNovelSpec = {
@@ -6176,14 +6868,14 @@ function withTimeout(promise, ms, onTimeout) {
   });
 }
 function useDebouncedEffect(effect, deps, delay) {
-  useEffect14(() => {
+  useEffect15(() => {
     const handler = setTimeout(() => effect(), delay);
     return () => clearTimeout(handler);
   }, [...deps || [], delay]);
 }
 var useMediaQuery2 = (query) => {
-  const [matches, setMatches] = useState16(false);
-  useEffect14(() => {
+  const [matches, setMatches] = useState17(false);
+  useEffect15(() => {
     const media = window.matchMedia(query);
     if (media.matches !== matches) {
       setMatches(media.matches);
@@ -6209,103 +6901,132 @@ var formatTime = (ms) => {
   return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(milliseconds, 3)}`;
 };
 var App = () => {
-  const [sessionId, setSessionId] = useState16(crypto.randomUUID());
-  const [chatHistory, setChatHistory] = useState16([]);
-  const [originalPrompt, setOriginalPrompt] = useState16("");
-  const [projectPlan, setProjectPlan] = useState16([]);
-  const [projectHistory, setProjectHistory] = useState16([]);
-  const [files, setFiles] = useState16([]);
-  const [selectedFile, setSelectedFile] = useState16(null);
-  const [agentLogs, setAgentLogs] = useState16([]);
-  const [detailedLogs, setDetailedLogs] = useState16([]);
-  const [projectName, setProjectName] = useState16("AI Content Generator");
-  const [panelVisibility, setPanelVisibility] = useState16({ assistant: true, editor: false, agentLogs: true });
-  const [isDetailedLogsVisible, setIsDetailedLogsVisible] = useState16(false);
-  const [elapsedTime, setElapsedTime] = useState16(0);
-  const timerStartTimeRef = useRef10(0);
-  const [apiStats, setApiStats] = useState16({ requests: 0, responses: 0 });
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState16(false);
-  const [previewFile, setPreviewFile] = useState16(null);
-  const [isExportModalOpen, setIsExportModalOpen] = useState16(false);
-  const [isExporting, setIsExporting] = useState16(false);
-  const [isDiffModalOpen, setIsDiffModalOpen] = useState16(false);
-  const [diffData, setDiffData] = useState16(null);
-  const [isAboutModalOpen, setIsAboutModalOpen] = useState16(false);
-  const [isTutorialModalOpen, setIsTutorialModalOpen] = useState16(false);
-  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState16(false);
-  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState16(false);
-  const [mode, setMode] = useState16("audio");
-  const [selectedLanguage, setSelectedLanguage] = useState16("html");
-  const [contentType, setContentType] = useState16("blog_post");
-  const [wordCount, setWordCount] = useState16("no limit");
-  const [keywords, setKeywords] = useState16("");
-  const [audience, setAudience] = useState16("");
-  const [tone, setTone] = useState16("Optional");
-  const [novelSpec, setNovelSpec] = useState16(initialNovelSpec);
-  const [tutorialBookSpec, setTutorialBookSpec] = useState16(initialTutorialBookSpec);
-  const [powerPointSpec, setPowerPointSpec] = useState16(initialPowerPointSpec);
-  const [isLivePreviewActive, setIsLivePreviewActive] = useState16(false);
-  const [approvalMode, setApprovalMode] = useState16("auto");
-  const [testingPreference, setTestingPreference] = useState16("run_tests");
-  const [settings, setSettings] = useState16(null);
-  const [canvasContent, setCanvasContent] = useState16("");
-  const [canvasChatHistory, setCanvasChatHistory] = useState16([]);
-  const [isCanvasLoading, setIsCanvasLoading] = useState16(false);
-  const [audioChatHistory, setAudioChatHistory] = useState16([]);
-  const [isAudioLoading, setIsAudioLoading] = useState16(false);
-  const [audioLogStartIndex, setAudioLogStartIndex] = useState16(0);
-  const [aiVoice, setAiVoice] = useState16("");
-  const [attachedFile, setAttachedFile] = useState16(null);
-  const [summarizedAudioHistory, setSummarizedAudioHistory] = useState16(null);
-  const [generatedImages, setGeneratedImages] = useState16([]);
-  const [isImageLoading, setIsImageLoading] = useState16(false);
-  const [imagePrompt, setImagePrompt] = useState16("");
-  const [appPhase, setAppPhase] = useState16("idle");
-  const [projectEpics, setProjectEpics] = useState16([]);
-  const [pausedGenerationState, setPausedGenerationState] = useState16(null);
-  const [isPausedForRequest, setIsPausedForRequest] = useState16(false);
-  const [queuedRequest, setQueuedRequest] = useState16(null);
-  const isPausedForRequestRef = useRef10(isPausedForRequest);
-  const queuedRequestRef = useRef10(queuedRequest);
-  useEffect14(() => {
+  const [sessionId, setSessionId] = useState17(crypto.randomUUID());
+  const [chatHistory, setChatHistory] = useState17([]);
+  const [originalPrompt, setOriginalPrompt] = useState17("");
+  const [projectPlan, setProjectPlan] = useState17([]);
+  const [projectHistory, setProjectHistory] = useState17([]);
+  const [files, setFiles] = useState17([]);
+  const [selectedFile, setSelectedFile] = useState17(null);
+  const [agentLogs, setAgentLogs] = useState17([]);
+  const [detailedLogs, setDetailedLogs] = useState17([]);
+  const [projectName, setProjectName] = useState17("AI Content Generator");
+  const [panelVisibility, setPanelVisibility] = useState17({ assistant: true, editor: false, agentLogs: true });
+  const [isDetailedLogsVisible, setIsDetailedLogsVisible] = useState17(false);
+  const [elapsedTime, setElapsedTime] = useState17(0);
+  const timerStartTimeRef = useRef11(0);
+  const [apiStats, setApiStats] = useState17({ requests: 0, responses: 0 });
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState17(false);
+  const [previewFile, setPreviewFile] = useState17(null);
+  const [isExportModalOpen, setIsExportModalOpen] = useState17(false);
+  const [isExporting, setIsExporting] = useState17(false);
+  const [isDiffModalOpen, setIsDiffModalOpen] = useState17(false);
+  const [diffData, setDiffData] = useState17(null);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState17(false);
+  const [isTutorialModalOpen, setIsTutorialModalOpen] = useState17(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState17(false);
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState17(false);
+  const [mode, setMode] = useState17("audio");
+  const [selectedLanguage, setSelectedLanguage] = useState17("html");
+  const [contentType, setContentType] = useState17("blog_post");
+  const [wordCount, setWordCount] = useState17("no limit");
+  const [keywords, setKeywords] = useState17("");
+  const [audience, setAudience] = useState17("");
+  const [tone, setTone] = useState17("Optional");
+  const [novelSpec, setNovelSpec] = useState17(initialNovelSpec);
+  const [tutorialBookSpec, setTutorialBookSpec] = useState17(initialTutorialBookSpec);
+  const [powerPointSpec, setPowerPointSpec] = useState17(initialPowerPointSpec);
+  const [isLivePreviewActive, setIsLivePreviewActive] = useState17(false);
+  const [approvalMode, setApprovalMode] = useState17("auto");
+  const [testingPreference, setTestingPreference] = useState17("run_tests");
+  const [settings, setSettings] = useState17(null);
+  const [canvasContent, setCanvasContent] = useState17("");
+  const [canvasChatHistory, setCanvasChatHistory] = useState17([]);
+  const [isCanvasLoading, setIsCanvasLoading] = useState17(false);
+  const [audioChatHistory, setAudioChatHistory] = useState17([]);
+  const [isAudioLoading, setIsAudioLoading] = useState17(false);
+  const [audioLogStartIndex, setAudioLogStartIndex] = useState17(0);
+  const [aiVoice, setAiVoice] = useState17("");
+  const [attachedFile, setAttachedFile] = useState17(null);
+  const [summarizedAudioHistory, setSummarizedAudioHistory] = useState17(null);
+  const [generatedImages, setGeneratedImages] = useState17([]);
+  const [isImageLoading, setIsImageLoading] = useState17(false);
+  const [imagePrompt, setImagePrompt] = useState17("");
+  const [workflowNodes, setWorkflowNodes] = useState17([]);
+  const [workflowConnections, setWorkflowConnections] = useState17([]);
+  const [appPhase, setAppPhase] = useState17("idle");
+  const [projectEpics, setProjectEpics] = useState17([]);
+  const [pausedGenerationState, setPausedGenerationState] = useState17(null);
+  const [isPausedForRequest, setIsPausedForRequest] = useState17(false);
+  const [queuedRequest, setQueuedRequest] = useState17(null);
+  const isPausedForRequestRef = useRef11(isPausedForRequest);
+  const queuedRequestRef = useRef11(queuedRequest);
+  useEffect15(() => {
     isPausedForRequestRef.current = isPausedForRequest;
   }, [isPausedForRequest]);
-  useEffect14(() => {
+  useEffect15(() => {
     queuedRequestRef.current = queuedRequest;
   }, [queuedRequest]);
-  const [horizontalSizes, setHorizontalSizes] = useState16([34, 33, 33]);
-  const [verticalSize, setVerticalSize] = useState16(70);
-  const [isDragging, setIsDragging] = useState16(null);
-  const [draggedIndex, setDraggedIndex] = useState16(null);
-  const initialSizesRef = useRef10([]);
-  const initialPosRef = useRef10({ x: 0, y: 0 });
-  const [lastFailureContext, setLastFailureContext] = useState16(null);
+  const [horizontalSizes, setHorizontalSizes] = useState17([34, 33, 33]);
+  const [verticalSize, setVerticalSize] = useState17(70);
+  const [isDragging, setIsDragging] = useState17(null);
+  const [draggedIndex, setDraggedIndex] = useState17(null);
+  const initialSizesRef = useRef11([]);
+  const initialPosRef = useRef11({ x: 0, y: 0 });
+  const [lastFailureContext, setLastFailureContext] = useState17(null);
   const isMobile = useMediaQuery2("(max-width: 768px)");
-  const [mobileActiveView, setMobileActiveView] = useState16("assistant");
-  const appRef = useRef10(null);
-  const mainPanelsRef = useRef10(null);
+  const [mobileActiveView, setMobileActiveView] = useState17("assistant");
+  const appRef = useRef11(null);
+  const mainPanelsRef = useRef11(null);
+  const settingsRef = useRef11(null);
   const isNewProject = useMemo3(() => projectHistory.length === 0, [projectHistory]);
   const isLoading = useMemo3(() => ["planning-epics", "generating-code"].includes(appPhase) || isImageLoading, [appPhase, isImageLoading]);
-  const isProjectReady = useMemo3(() => appPhase === "ready" && files.length > 0 || appPhase === "ready" && contentType === "powerpoint_presentation", [appPhase, files, contentType]);
+  const isProjectReady = useMemo3(
+    () => appPhase === "ready" && files.length > 0 || appPhase === "ready" && contentType === "powerpoint_presentation" || mode === "builder" && files.length > 0,
+    [appPhase, files, contentType, mode]
+  );
   const areMainPanelsHidden = useMemo3(() => !panelVisibility.assistant && !panelVisibility.editor && !panelVisibility.agentLogs, [panelVisibility]);
   const isPreviewEnabled = useMemo3(() => mode === "coder" && files.some((f) => f.path.endsWith("index.html")), [mode, files]);
   const isThinkingForAudio = useMemo3(() => isAudioLoading, [isAudioLoading]);
   const isAudioThinkingPanelVisible = useMemo3(() => isThinkingForAudio, [isThinkingForAudio]);
   const thinkingLogs = isThinkingForAudio ? agentLogs.slice(audioLogStartIndex) : [];
-  const apiStatsRef = useRef10(apiStats);
-  const elapsedTimeRef = useRef10(elapsedTime);
-  useEffect14(() => {
+  const apiStatsRef = useRef11(apiStats);
+  const elapsedTimeRef = useRef11(elapsedTime);
+  useEffect15(() => {
     apiStatsRef.current = apiStats;
   }, [apiStats]);
-  useEffect14(() => {
+  useEffect15(() => {
     elapsedTimeRef.current = elapsedTime;
   }, [elapsedTime]);
-  useEffect14(() => {
+  useEffect15(() => {
     const fetchSettings = async () => {
       const loadedSettings = await loadSettings();
       setSettings(loadedSettings);
+      settingsRef.current = JSON.stringify(loadedSettings);
+      if (loadedSettings.apiPreferences) {
+        configureApiEndpoints(loadedSettings.apiPreferences);
+      }
     };
     fetchSettings();
+  }, []);
+  useEffect15(() => {
+    const intervalId = setInterval(async () => {
+      try {
+        const newSettings = await loadSettings();
+        const newSettingsString = JSON.stringify(newSettings);
+        if (settingsRef.current && newSettingsString !== settingsRef.current) {
+          console.log("[Settings Polling] Detected change in settings.json. Applying new settings.");
+          setSettings(newSettings);
+          if (newSettings.apiPreferences) {
+            configureApiEndpoints(newSettings.apiPreferences);
+          }
+          settingsRef.current = newSettingsString;
+        }
+      } catch (error) {
+        console.warn("[Settings Polling] Error while checking for settings updates:", error);
+      }
+    }, 6e4);
+    return () => clearInterval(intervalId);
   }, []);
   useDebouncedEffect(() => {
     if (appPhase !== "idle" && !["canvas", "audio", "image"].includes(mode)) {
@@ -6337,7 +7058,9 @@ var App = () => {
         selectedFile,
         approvalMode,
         testingPreference,
-        generatedImages
+        generatedImages,
+        workflowNodes,
+        workflowConnections
       };
       saveSession(sessionData);
     }
@@ -6368,9 +7091,11 @@ var App = () => {
     selectedFile,
     approvalMode,
     testingPreference,
-    generatedImages
+    generatedImages,
+    workflowNodes,
+    workflowConnections
   ], 1e3);
-  useEffect14(() => {
+  useEffect15(() => {
     let interval;
     if (isLoading || isThinkingForAudio) {
       timerStartTimeRef.current = Date.now();
@@ -6386,14 +7111,14 @@ var App = () => {
       }
     };
   }, [isLoading, isThinkingForAudio]);
-  const incrementRequests = useCallback3(() => setApiStats((s) => ({ ...s, requests: s.requests + 1 })), []);
-  const incrementResponses = useCallback3(() => setApiStats((s) => ({ ...s, responses: s.responses + 1 })), []);
-  const addLog = useCallback3((log) => setAgentLogs((prev) => [...prev, log]), []);
-  const addDetailedLog = useCallback3((content) => {
+  const incrementRequests = useCallback4(() => setApiStats((s) => ({ ...s, requests: s.requests + 1 })), []);
+  const incrementResponses = useCallback4(() => setApiStats((s) => ({ ...s, responses: s.responses + 1 })), []);
+  const addLog = useCallback4((log) => setAgentLogs((prev) => [...prev, log]), []);
+  const addDetailedLog = useCallback4((content) => {
     const timestamp = (/* @__PURE__ */ new Date()).toLocaleTimeString();
     setDetailedLogs((prev) => [...prev, { timestamp, content }]);
   }, []);
-  const updateProjectHistory = useCallback3((filePath, fileDescription) => {
+  const updateProjectHistory = useCallback4((filePath, fileDescription) => {
     setProjectHistory((prev) => {
       const existingFile = prev.find((f) => f.filePath === filePath);
       if (existingFile) {
@@ -6402,7 +7127,7 @@ var App = () => {
       return [...prev, { filePath, promptHistory: [fileDescription] }];
     });
   }, []);
-  const processFileGeneration = useCallback3(async (originalPrompt2, fileToGenerate, allGeneratedCodeRecord, dependencyContext, clarificationHistory, midGenRequest) => {
+  const processFileGeneration = useCallback4(async (originalPrompt2, fileToGenerate, allGeneratedCodeRecord, dependencyContext, clarificationHistory, midGenRequest) => {
     const fileType = fileToGenerate.type || "general";
     const currentFilesRecord = allGeneratedCodeRecord || {};
     let testContext = void 0;
@@ -6665,7 +7390,7 @@ ${currentFilesRecord[depPath] || ""}`).join("\n\n---\n\n");
     }
     return { status: fileIsCorrect ? "success" : "failure", failureHistory, finalContent: currentContent };
   }, [addLog, addDetailedLog, selectedLanguage, files, updateProjectHistory, incrementRequests, incrementResponses, testingPreference]);
-  const handleAttemptFix = useCallback3(async () => {
+  const handleAttemptFix = useCallback4(async () => {
     if (!lastFailureContext) return;
     setAppPhase("generating-code");
     setChatHistory((prev) => {
@@ -6768,12 +7493,12 @@ ${newFinalFailures.map((f) => `- ${f.path}: ${f.reason}`).join("\n")}` : "Fix at
       setAppPhase("ready");
     }
   }, [lastFailureContext, processFileGeneration, addLog, addDetailedLog, files, incrementRequests, incrementResponses, mode, wordCount, keywords, audience, tone, projectName, projectEpics]);
-  const handleSkipFix = useCallback3(() => {
+  const handleSkipFix = useCallback4(() => {
     setLastFailureContext(null);
     setChatHistory((prev) => prev.map((msg) => msg.isFailure ? { ...msg, isFailure: false } : msg));
     addLog({ source: "system", message: "User skipped fix attempt.", status: "info" });
   }, [addLog]);
-  const finishProjectGeneration = useCallback3(async (allGeneratedFiles, completedEpics) => {
+  const finishProjectGeneration = useCallback4(async (allGeneratedFiles, completedEpics) => {
     const finalTime = elapsedTimeRef.current;
     const finalStats = apiStatsRef.current;
     addLog({ source: "project-cto", message: "Performing final project review...", status: "running" });
@@ -6814,7 +7539,7 @@ ${failedFiles.map((f) => `- ${f.path}`).join("\n")}` : "Generation completed wit
     setAppPhase("ready");
   }, [addLog, addDetailedLog, originalPrompt, projectHistory, projectPlan, incrementRequests, incrementResponses, mode, projectName]);
   let startFeatureGeneration;
-  const planNextTask = useCallback3(async (epics) => {
+  const planNextTask = useCallback4(async (epics) => {
     const epicIndex = epics.findIndex((e) => e.status !== "completed" && e.status !== "failed");
     if (epicIndex === -1) {
       await finishProjectGeneration(files, epics.filter((e) => e.status === "completed"));
@@ -6886,7 +7611,7 @@ ${e.apiContract}
       setAppPhase("ready");
     }
   }, [addLog, addDetailedLog, finishProjectGeneration, originalPrompt, selectedLanguage, incrementRequests, incrementResponses, files, approvalMode, startFeatureGeneration]);
-  const executeGenerationPlan = useCallback3(async (plan, index, allGeneratedCodeRecord, clarificationHistory, epics, epicIndex, featureIndex) => {
+  const executeGenerationPlan = useCallback4(async (plan, index, allGeneratedCodeRecord, clarificationHistory, epics, epicIndex, featureIndex) => {
     if (index >= plan.length) {
       const currentEpic = epics[epicIndex];
       const currentFeature = currentEpic.features[featureIndex];
@@ -6936,7 +7661,7 @@ ${e.apiContract}`).join("\n\n");
     }
     await executeGenerationPlan(plan, index + 1, newCodeRecord, clarificationHistory, epics, epicIndex, featureIndex);
   }, [processFileGeneration, originalPrompt, planNextTask, setQueuedRequest]);
-  startFeatureGeneration = useCallback3(async (plan, epics, epicIndex, featureIndex) => {
+  startFeatureGeneration = useCallback4(async (plan, epics, epicIndex, featureIndex) => {
     if (epicIndex >= epics.length) return;
     if (plan.length === 0) {
       const currentEpic2 = epics[epicIndex];
@@ -6968,7 +7693,7 @@ ${e.apiContract}`).join("\n\n");
     }, {});
     await executeGenerationPlan(plan, 0, initialCodeRecord, [], epics, epicIndex, featureIndex);
   }, [isMobile, selectedFile, files, executeGenerationPlan, planNextTask]);
-  const handleCoderModeGeneration = useCallback3(async (message, attachedFileContent) => {
+  const handleCoderModeGeneration = useCallback4(async (message, attachedFileContent) => {
     setOriginalPrompt(message);
     setAppPhase("planning-epics");
     addLog({ source: "system", message: "Scaffolding Agent analyzing project complexity...", status: "running" });
@@ -7037,7 +7762,7 @@ ${e.apiContract}`).join("\n\n");
       setAppPhase("idle");
     }
   }, [addLog, addDetailedLog, selectedLanguage, planNextTask, incrementRequests, incrementResponses, selectedFile, startFeatureGeneration]);
-  const handleFeaturePlanApproval = useCallback3(async () => {
+  const handleFeaturePlanApproval = useCallback4(async () => {
     if (projectPlan.length === 0) return;
     const epicIndex = projectEpics.findIndex((e) => e.status === "reviewing");
     if (epicIndex === -1) {
@@ -7053,7 +7778,7 @@ ${e.apiContract}`).join("\n\n");
     addLog({ source: "system", message: `User approved plan for feature "${currentEpic.features[featureIndex].name}". Starting code generation...`, status: "info" });
     await startFeatureGeneration(projectPlan, projectEpics, epicIndex, featureIndex);
   }, [projectPlan, addLog, projectEpics, startFeatureGeneration]);
-  const resumeGeneration = useCallback3(async (userAnswer) => {
+  const resumeGeneration = useCallback4(async (userAnswer) => {
     if (!pausedGenerationState) return;
     addLog({ source: "system", message: `Resuming generation with user clarification...`, status: "info" });
     setAppPhase("generating-code");
@@ -7063,7 +7788,7 @@ ${e.apiContract}`).join("\n\n");
     setPausedGenerationState(null);
     await executeGenerationPlan(plan, currentIndex, allGeneratedCodeRecord, updatedClarificationHistory, projectEpics, epicIndex, featureIndex);
   }, [pausedGenerationState, executeGenerationPlan, addLog, projectEpics]);
-  const handleSimpleContentGeneration = useCallback3(async (message, attachedFileContent, contentSpec) => {
+  const handleSimpleContentGeneration = useCallback4(async (message, attachedFileContent, contentSpec) => {
     setOriginalPrompt(message);
     addLog({ source: "system", message: `Starting content generation for type: ${contentType}`, status: "info" });
     const specKeywords = contentSpec?.keywords || "";
@@ -7119,7 +7844,7 @@ ${e.apiContract}`).join("\n\n");
     }
     setChatHistory((prev) => [...prev, { id: Date.now().toString() + "a", role: "assistant", content: verdict, isFailure: !isSuccess, showSendToCanvas: isSuccess && plannedFiles.length > 0 }]);
   }, [addLog, addDetailedLog, contentType, wordCount, updateProjectHistory, incrementRequests, incrementResponses]);
-  const handleNovelGeneration = useCallback3(async (message, attachedFileContent) => {
+  const handleNovelGeneration = useCallback4(async (message, attachedFileContent) => {
     addLog({ source: "system", message: "Starting novel generation...", status: "info" });
     setOriginalPrompt(message);
     const fullPrompt = { premise: message, spec: novelSpec };
@@ -7191,7 +7916,7 @@ ${e.apiContract}`).join("\n\n");
     }
     setChatHistory((prev) => [...prev, { id: Date.now().toString() + "a", role: "assistant", content: verdict, isFailure: false, showSendToCanvas: isSuccess && plannedChapters.length > 0 }]);
   }, [addLog, addDetailedLog, novelSpec, selectedFile, updateProjectHistory, incrementRequests, incrementResponses]);
-  const handleTutorialBookGeneration = useCallback3(async (message, attachedFileContent) => {
+  const handleTutorialBookGeneration = useCallback4(async (message, attachedFileContent) => {
     addLog({ source: "system", message: "Starting tutorial book generation...", status: "info" });
     setOriginalPrompt(message);
     const fullPrompt = { premise: message, spec: tutorialBookSpec };
@@ -7261,7 +7986,7 @@ ${e.apiContract}`).join("\n\n");
     }
     setChatHistory((prev) => [...prev, { id: Date.now().toString() + "a", role: "assistant", content: verdict, isFailure: false, showSendToCanvas: isSuccess && plannedChapters.length > 0 }]);
   }, [addLog, addDetailedLog, tutorialBookSpec, selectedFile, updateProjectHistory, incrementRequests, incrementResponses]);
-  const handlePowerPointGeneration = useCallback3(async (message, attachedFileContent) => {
+  const handlePowerPointGeneration = useCallback4(async (message, attachedFileContent) => {
     addLog({ source: "system", message: "Starting PowerPoint presentation generation...", status: "info" });
     setOriginalPrompt(message);
     try {
@@ -7397,7 +8122,7 @@ ${e.apiContract}`).join("\n\n");
       setChatHistory((prev) => [...prev, { id: crypto.randomUUID(), role: "assistant", content: `An error occurred while generating the presentation: ${errorMessage}` }]);
     }
   }, [addLog, addDetailedLog, powerPointSpec, projectName, incrementRequests, incrementResponses]);
-  const handleRegenerateFile = useCallback3(async (filePath) => {
+  const handleRegenerateFile = useCallback4(async (filePath) => {
     addLog({ source: "system", message: `Beginning regeneration for ${filePath}...`, status: "info" });
     setFiles((prev) => prev.map((f) => f.path === filePath ? { ...f, status: "regenerating" } : f));
     setAppPhase("generating-code");
@@ -7493,7 +8218,7 @@ ${e.apiContract}`).join("\n\n");
       setAppPhase("ready");
     }
   }, [projectPlan, files, originalPrompt, novelSpec, tutorialBookSpec, contentType, wordCount, keywords, audience, tone, addLog, addDetailedLog, incrementRequests, incrementResponses]);
-  const handleSendMessage = useCallback3(async (message, attachedFileContent, payload) => {
+  const handleSendMessage = useCallback4(async (message, attachedFileContent, payload) => {
     if (!message.trim() && !attachedFileContent) return;
     const numAttachedFiles = attachedFileContent ? (attachedFileContent.match(/\/\/ FILE:/g) || []).length : 0;
     const attachmentText = numAttachedFiles > 0 ? `
@@ -7695,7 +8420,7 @@ ${truncatedContent}`;
       setIsAudioLoading(false);
     }
   };
-  const handleCanvasSendMessage = useCallback3(async (message) => {
+  const handleCanvasSendMessage = useCallback4(async (message) => {
     if (!message.trim()) return;
     const userMessage = { id: Date.now().toString(), role: "user", content: message };
     const newHistory = [...canvasChatHistory, userMessage];
@@ -7756,7 +8481,7 @@ ${truncatedContent}`;
       setIsCanvasLoading(false);
     }
   }, [canvasContent, canvasChatHistory, addLog, addDetailedLog, incrementRequests, incrementResponses]);
-  const handleCanvasSelectionRequest = useCallback3(async (prompt, selection) => {
+  const handleCanvasSelectionRequest = useCallback4(async (prompt, selection) => {
     const userMessage = {
       id: Date.now().toString(),
       role: "user",
@@ -7809,7 +8534,7 @@ ${truncatedContent}`;
       setIsCanvasLoading(false);
     }
   }, [canvasContent, canvasChatHistory, addLog, addDetailedLog, incrementRequests, incrementResponses]);
-  const handleGetAIQuickActions = useCallback3(async (selectedText) => {
+  const handleGetAIQuickActions = useCallback4(async (selectedText) => {
     addLog({ source: "system", message: "Fetching AI quick actions...", status: "running" });
     try {
       const actions = await getAIQuickActions(
@@ -7826,7 +8551,7 @@ ${truncatedContent}`;
       return ["Summarize", "Fix Grammar & Spelling", "Explain This"];
     }
   }, [addLog, addDetailedLog, incrementRequests, incrementResponses]);
-  const handleImageGeneration = useCallback3(async (prompt, aspectRatio) => {
+  const handleImageGeneration = useCallback4(async (prompt, aspectRatio) => {
     setGeneratedImages([]);
     setAgentLogs([]);
     setIsImageLoading(true);
@@ -7859,7 +8584,7 @@ ${truncatedContent}`;
       setIsImageLoading(false);
     }
   }, [addLog, addDetailedLog, incrementRequests, incrementResponses, setImagePrompt]);
-  const handleSurpriseMe = useCallback3(async () => {
+  const handleSurpriseMe = useCallback4(async () => {
     setAgentLogs([]);
     setApiStats({ requests: 0, responses: 0 });
     addLog({ source: "system", message: "Generating a surprise prompt...", status: "running" });
@@ -7876,10 +8601,10 @@ ${truncatedContent}`;
       setIsImageLoading(false);
     }
   }, [addLog, addDetailedLog, incrementRequests, incrementResponses, handleImageGeneration, setImagePrompt]);
-  const handleFileContentChange = useCallback3((path, content) => {
+  const handleFileContentChange = useCallback4((path, content) => {
     setFiles((prevFiles) => prevFiles.map((file) => file.path === path ? { ...file, content } : file));
   }, []);
-  const handleDownloadZip = useCallback3(() => {
+  const handleDownloadZip = useCallback4(() => {
     if (files.length === 0) return;
     if (mode === "content" && contentType !== "powerpoint_presentation") {
       setIsExportModalOpen(true);
@@ -7902,7 +8627,7 @@ ${truncatedContent}`;
       document.body.removeChild(link);
     });
   }, [files, projectName, mode, contentType]);
-  const handleConfirmExport = useCallback3(async (format) => {
+  const handleConfirmExport = useCallback4(async (format) => {
     if (files.length === 0) return;
     setIsExporting(true);
     addLog({ source: "system", message: `Exporting project as ${format.toUpperCase()}...`, status: "running" });
@@ -7994,15 +8719,15 @@ ${file.content}`).join('\n\n<div style="page-break-after: always;"></div>\n\n');
       setIsExportModalOpen(false);
     }
   }, [files, projectName, addLog]);
-  const handleNewSession = useCallback3(() => {
+  const handleNewSession = useCallback4(() => {
     if (window.confirm("Are you sure you want to start a new session? This will clear the current state.")) {
       window.location.reload();
     }
   }, []);
-  const togglePanelVisibility = useCallback3((panel) => {
+  const togglePanelVisibility = useCallback4((panel) => {
     setPanelVisibility((prev) => ({ ...prev, [panel]: !prev[panel] }));
   }, []);
-  const handleSetMode = useCallback3((newMode) => {
+  const handleSetMode = useCallback4((newMode) => {
     if (isLoading || !settings) return;
     const modeStatus = settings.tier1[`${newMode}Mode`];
     if (modeStatus === "locked") {
@@ -8014,18 +8739,18 @@ ${file.content}`).join('\n\n<div style="page-break-after: always;"></div>\n\n');
     }
     setAgentLogs([]);
   }, [isLoading, files.length, settings]);
-  const toggleLivePreview = useCallback3(() => {
+  const toggleLivePreview = useCallback4(() => {
     if (isPreviewEnabled) {
       setIsLivePreviewActive((p) => !p);
     }
   }, [isPreviewEnabled]);
-  const handlePauseGeneration = useCallback3(() => {
+  const handlePauseGeneration = useCallback4(() => {
     if (isLoading && !isPausedForRequest) {
       setIsPausedForRequest(true);
       addLog({ source: "system", message: "Generation paused by user. Please provide your request in the chat.", status: "info" });
     }
   }, [isLoading, isPausedForRequest, addLog]);
-  const handleLoadSession = useCallback3((sessionData) => {
+  const handleLoadSession = useCallback4((sessionData) => {
     if (window.confirm(`Are you sure you want to load the project "${sessionData.projectName}"? Any unsaved changes in the current session will be lost.`)) {
       setSessionId(sessionData.id);
       setProjectName(sessionData.projectName);
@@ -8054,11 +8779,13 @@ ${file.content}`).join('\n\n<div style="page-break-after: always;"></div>\n\n');
       setApprovalMode(sessionData.approvalMode || "auto");
       setTestingPreference(sessionData.testingPreference || "run_tests");
       setGeneratedImages(sessionData.generatedImages || []);
+      setWorkflowNodes(sessionData.workflowNodes || []);
+      setWorkflowConnections(sessionData.workflowConnections || []);
       setIsHistoryModalOpen(false);
       setPanelVisibility((prev) => ({ ...prev, editor: sessionData.files.length > 0 }));
     }
   }, []);
-  const handleMouseDown = useCallback3((e, type, index) => {
+  const handleMouseDown = useCallback4((e, type, index) => {
     e.preventDefault();
     setIsDragging(type);
     if (type === "horizontal") {
@@ -8069,7 +8796,7 @@ ${file.content}`).join('\n\n<div style="page-break-after: always;"></div>\n\n');
     }
     initialPosRef.current = { x: e.clientX, y: e.clientY };
   }, [horizontalSizes, verticalSize]);
-  const handleMouseMove = useCallback3((e) => {
+  const handleMouseMove = useCallback4((e) => {
     if (!isDragging || !mainPanelsRef.current) return;
     e.preventDefault();
     if (isDragging === "horizontal") {
@@ -8077,8 +8804,8 @@ ${file.content}`).join('\n\n<div style="page-break-after: always;"></div>\n\n');
       const delta = (e.clientX - initialPosRef.current.x) / mainPanelsRef.current.offsetWidth * 100;
       const leftPanelIndex = draggedIndex;
       const rightPanelIndex = draggedIndex + 1;
-      newSizes[leftPanelIndex] = Math.max(MIN_PANEL_PERCENT, initialSizesRef.current[leftPanelIndex] + delta);
-      newSizes[rightPanelIndex] = Math.max(MIN_PANEL_PERCENT, initialSizesRef.current[rightPanelIndex] - delta);
+      newSizes[leftPanelIndex] = Math.max(MIN_PANEL_PERCENT2, initialSizesRef.current[leftPanelIndex] + delta);
+      newSizes[rightPanelIndex] = Math.max(MIN_PANEL_PERCENT2, initialSizesRef.current[rightPanelIndex] - delta);
       const total = newSizes[leftPanelIndex] + newSizes[rightPanelIndex];
       const initialTotal = initialSizesRef.current[leftPanelIndex] + initialSizesRef.current[rightPanelIndex];
       newSizes[leftPanelIndex] = newSizes[leftPanelIndex] / total * initialTotal;
@@ -8086,15 +8813,15 @@ ${file.content}`).join('\n\n<div style="page-break-after: always;"></div>\n\n');
       setHorizontalSizes(newSizes);
     } else {
       const delta = (e.clientY - initialPosRef.current.y) / mainPanelsRef.current.offsetHeight * 100;
-      const newSize = Math.max(MIN_PANEL_PERCENT, Math.min(100 - MIN_PANEL_PERCENT, initialSizesRef.current[0] + delta));
+      const newSize = Math.max(MIN_PANEL_PERCENT2, Math.min(100 - MIN_PANEL_PERCENT2, initialSizesRef.current[0] + delta));
       setVerticalSize(newSize);
     }
   }, [isDragging, draggedIndex]);
-  const handleMouseUp = useCallback3(() => {
+  const handleMouseUp = useCallback4(() => {
     setIsDragging(null);
     setDraggedIndex(null);
   }, []);
-  const handleSendToCanvas = useCallback3(() => {
+  const handleSendToCanvas = useCallback4(() => {
     const contentForCanvas = files.map((file) => `// FILE: ${file.path}
 
 ${file.content}`).join("\n\n---\n\n");
@@ -8106,13 +8833,35 @@ ${file.content}`).join("\n\n---\n\n");
       content: "I've sent the project files to the canvas. You can now ask me to make changes or edit the text directly."
     }]);
   }, [files]);
+  const handleWriteToFile = useCallback4((path, content) => {
+    if (!path) {
+      addLog({ source: "system", message: "Builder workflow failed to write file: File path is empty.", status: "error" });
+      return;
+    }
+    setFiles((prevFiles) => {
+      const fileExists = prevFiles.some((f) => f.path === path);
+      const newFile = { path, content, status: "generated" };
+      if (fileExists) {
+        return prevFiles.map((f) => f.path === path ? newFile : f);
+      } else {
+        return [...prevFiles, newFile];
+      }
+    });
+    addLog({ source: "system", message: `Builder workflow created/updated file: ${path}`, status: "success" });
+    if (mode !== "coder" && mode !== "content") {
+      setMode("coder");
+    }
+    setPanelVisibility((prev) => ({ ...prev, editor: true }));
+    setSelectedFile(path);
+    if (isMobile) setMobileActiveView("editor");
+  }, [addLog, isMobile, mode]);
   if (!settings) {
-    return /* @__PURE__ */ jsxs24("div", { className: "bg-gray-900 text-gray-200 h-screen flex flex-col items-center justify-center", children: [
-      /* @__PURE__ */ jsx26(LoaderIcon, { className: "w-10 h-10" }),
-      /* @__PURE__ */ jsx26("p", { className: "mt-4", children: "Loading settings..." })
+    return /* @__PURE__ */ jsxs25("div", { className: "bg-gray-900 text-gray-200 h-screen flex flex-col items-center justify-center", children: [
+      /* @__PURE__ */ jsx27(LoaderIcon, { className: "w-10 h-10" }),
+      /* @__PURE__ */ jsx27("p", { className: "mt-4", children: "Loading settings..." })
     ] });
   }
-  return /* @__PURE__ */ jsxs24(
+  return /* @__PURE__ */ jsxs25(
     "div",
     {
       ref: appRef,
@@ -8121,7 +8870,7 @@ ${file.content}`).join("\n\n---\n\n");
       onMouseUp: handleMouseUp,
       onMouseLeave: handleMouseUp,
       children: [
-        /* @__PURE__ */ jsx26(
+        /* @__PURE__ */ jsx27(
           Header,
           {
             projectName,
@@ -8151,8 +8900,8 @@ ${file.content}`).join("\n\n---\n\n");
             settings
           }
         ),
-        ["canvas", "audio", "image"].includes(mode) ? /* @__PURE__ */ jsxs24("main", { className: "flex-grow min-h-0", children: [
-          mode === "canvas" && /* @__PURE__ */ jsx26(
+        ["canvas", "audio", "image", "builder"].includes(mode) ? /* @__PURE__ */ jsxs25("main", { className: "flex-grow min-h-0", children: [
+          mode === "canvas" && /* @__PURE__ */ jsx27(
             CanvasMode,
             {
               chatHistory: canvasChatHistory,
@@ -8165,7 +8914,7 @@ ${file.content}`).join("\n\n---\n\n");
               settings
             }
           ),
-          mode === "audio" && /* @__PURE__ */ jsx26(
+          mode === "audio" && /* @__PURE__ */ jsx27(
             AudioMode,
             {
               chatHistory: audioChatHistory,
@@ -8177,7 +8926,7 @@ ${file.content}`).join("\n\n---\n\n");
               setAttachedFile
             }
           ),
-          mode === "image" && /* @__PURE__ */ jsx26(
+          mode === "image" && /* @__PURE__ */ jsx27(
             ImageMode,
             {
               onGenerate: handleImageGeneration,
@@ -8189,9 +8938,30 @@ ${file.content}`).join("\n\n---\n\n");
               agentLogs,
               settings
             }
+          ),
+          mode === "builder" && /* @__PURE__ */ jsx27(
+            BuilderMode,
+            {
+              nodes: workflowNodes,
+              setNodes: setWorkflowNodes,
+              connections: workflowConnections,
+              setConnections: setWorkflowConnections,
+              onWriteToFile: handleWriteToFile,
+              files,
+              selectedFile,
+              onSelectFile: setSelectedFile,
+              onFileContentChange: handleFileContentChange,
+              onRegenerateFile: handleRegenerateFile,
+              onFileDoubleClick: (path) => {
+                setPreviewFile(files.find((f) => f.path === path) || null);
+                setIsPreviewModalOpen(true);
+              },
+              isLoading,
+              isPreviewEnabled
+            }
           )
-        ] }) : isMobile ? /* @__PURE__ */ jsxs24("main", { className: "flex-grow min-h-0 pb-16", children: [
-          mobileActiveView === "assistant" && panelVisibility.assistant && /* @__PURE__ */ jsx26(
+        ] }) : isMobile ? /* @__PURE__ */ jsxs25("main", { className: "flex-grow min-h-0 pb-16", children: [
+          mobileActiveView === "assistant" && panelVisibility.assistant && /* @__PURE__ */ jsx27(
             AssistantPanel,
             {
               chatHistory,
@@ -8229,7 +8999,7 @@ ${file.content}`).join("\n\n---\n\n");
               settings
             }
           ),
-          mobileActiveView === "editor" && panelVisibility.editor && /* @__PURE__ */ jsx26(
+          mobileActiveView === "editor" && panelVisibility.editor && /* @__PURE__ */ jsx27(
             EditorPanel,
             {
               files,
@@ -8246,9 +9016,9 @@ ${file.content}`).join("\n\n---\n\n");
               isPreviewEnabled
             }
           ),
-          mobileActiveView === "agentLogs" && panelVisibility.agentLogs && /* @__PURE__ */ jsx26(AgentLogsPanel, { agentLogs })
-        ] }) : areMainPanelsHidden ? /* @__PURE__ */ jsx26("main", { className: "flex-grow min-h-0 flex items-center justify-center text-gray-500", children: "All panels are hidden. Use the header controls to show a panel." }) : /* @__PURE__ */ jsxs24("main", { ref: mainPanelsRef, className: `flex flex-col flex-grow min-h-0 ${isDragging ? "cursor-ns-resize" : ""}`, children: [
-          /* @__PURE__ */ jsx26("div", { className: "flex-grow flex min-h-0", style: { height: `${verticalSize}%` }, children: appPhase === "reviewing-plan" ? /* @__PURE__ */ jsx26(
+          mobileActiveView === "agentLogs" && panelVisibility.agentLogs && /* @__PURE__ */ jsx27(AgentLogsPanel, { agentLogs })
+        ] }) : areMainPanelsHidden ? /* @__PURE__ */ jsx27("main", { className: "flex-grow min-h-0 flex items-center justify-center text-gray-500", children: "All panels are hidden. Use the header controls to show a panel." }) : /* @__PURE__ */ jsxs25("main", { ref: mainPanelsRef, className: `flex flex-col flex-grow min-h-0 ${isDragging ? "cursor-ns-resize" : ""}`, children: [
+          /* @__PURE__ */ jsx27("div", { className: "flex-grow flex min-h-0", style: { height: `${verticalSize}%` }, children: appPhase === "reviewing-plan" ? /* @__PURE__ */ jsx27(
             PlanReviewPanel,
             {
               title: "Review Feature Plan",
@@ -8257,8 +9027,8 @@ ${file.content}`).join("\n\n---\n\n");
               onApprove: handleFeaturePlanApproval,
               isLoading
             }
-          ) : /* @__PURE__ */ jsxs24("div", { className: "flex flex-grow min-h-0", children: [
-            panelVisibility.assistant && /* @__PURE__ */ jsx26("div", { className: "flex-shrink-0", style: { width: `${horizontalSizes[0]}%` }, children: /* @__PURE__ */ jsx26(
+          ) : /* @__PURE__ */ jsxs25("div", { className: "flex flex-grow min-h-0", children: [
+            panelVisibility.assistant && /* @__PURE__ */ jsx27("div", { className: "flex-shrink-0", style: { width: `${horizontalSizes[0]}%` }, children: /* @__PURE__ */ jsx27(
               AssistantPanel,
               {
                 chatHistory,
@@ -8296,8 +9066,8 @@ ${file.content}`).join("\n\n---\n\n");
                 settings
               }
             ) }),
-            panelVisibility.assistant && (panelVisibility.editor || panelVisibility.agentLogs) && /* @__PURE__ */ jsx26(Resizer, { orientation: "horizontal", onMouseDown: (e) => handleMouseDown(e, "horizontal", 0) }),
-            panelVisibility.editor && /* @__PURE__ */ jsx26("div", { className: "flex-grow", style: { width: `${horizontalSizes[1]}%` }, children: /* @__PURE__ */ jsx26(
+            panelVisibility.assistant && (panelVisibility.editor || panelVisibility.agentLogs) && /* @__PURE__ */ jsx27(Resizer, { orientation: "horizontal", onMouseDown: (e) => handleMouseDown(e, "horizontal", 0) }),
+            panelVisibility.editor && /* @__PURE__ */ jsx27("div", { className: "flex-grow", style: { width: `${horizontalSizes[1]}%` }, children: /* @__PURE__ */ jsx27(
               EditorPanel,
               {
                 files,
@@ -8314,15 +9084,15 @@ ${file.content}`).join("\n\n---\n\n");
                 isPreviewEnabled
               }
             ) }),
-            panelVisibility.editor && panelVisibility.agentLogs && /* @__PURE__ */ jsx26(Resizer, { orientation: "horizontal", onMouseDown: (e) => handleMouseDown(e, "horizontal", 1) }),
-            panelVisibility.agentLogs && /* @__PURE__ */ jsx26("div", { className: "flex-shrink-0", style: { width: `${horizontalSizes[2]}%` }, children: /* @__PURE__ */ jsx26(AgentLogsPanel, { agentLogs }) })
+            panelVisibility.editor && panelVisibility.agentLogs && /* @__PURE__ */ jsx27(Resizer, { orientation: "horizontal", onMouseDown: (e) => handleMouseDown(e, "horizontal", 1) }),
+            panelVisibility.agentLogs && /* @__PURE__ */ jsx27("div", { className: "flex-shrink-0", style: { width: `${horizontalSizes[2]}%` }, children: /* @__PURE__ */ jsx27(AgentLogsPanel, { agentLogs }) })
           ] }) }),
-          isDetailedLogsVisible && /* @__PURE__ */ jsxs24(Fragment7, { children: [
-            /* @__PURE__ */ jsx26(Resizer, { orientation: "vertical", onMouseDown: (e) => handleMouseDown(e, "vertical") }),
-            /* @__PURE__ */ jsx26("div", { className: "flex-shrink-0", style: { height: `${100 - verticalSize}%` }, children: /* @__PURE__ */ jsx26(DetailedLogsPanel, { logs: detailedLogs, onClose: () => setIsDetailedLogsVisible(false), onClear: () => setDetailedLogs([]) }) })
+          isDetailedLogsVisible && /* @__PURE__ */ jsxs25(Fragment8, { children: [
+            /* @__PURE__ */ jsx27(Resizer, { orientation: "vertical", onMouseDown: (e) => handleMouseDown(e, "vertical") }),
+            /* @__PURE__ */ jsx27("div", { className: "flex-shrink-0", style: { height: `${100 - verticalSize}%` }, children: /* @__PURE__ */ jsx27(DetailedLogsPanel, { logs: detailedLogs, onClose: () => setIsDetailedLogsVisible(false), onClear: () => setDetailedLogs([]) }) })
           ] })
         ] }),
-        isMobile && /* @__PURE__ */ jsx26(
+        isMobile && /* @__PURE__ */ jsx27(
           MobileFooter,
           {
             activeView: mobileActiveView,
@@ -8330,7 +9100,7 @@ ${file.content}`).join("\n\n---\n\n");
             panelVisibility
           }
         ),
-        /* @__PURE__ */ jsx26(
+        /* @__PURE__ */ jsx27(
           MarkdownPreviewModal,
           {
             isOpen: isPreviewModalOpen,
@@ -8338,7 +9108,7 @@ ${file.content}`).join("\n\n---\n\n");
             file: previewFile
           }
         ),
-        /* @__PURE__ */ jsx26(
+        /* @__PURE__ */ jsx27(
           ExportModal,
           {
             isOpen: isExportModalOpen,
@@ -8347,7 +9117,7 @@ ${file.content}`).join("\n\n---\n\n");
             isProcessing: isExporting
           }
         ),
-        /* @__PURE__ */ jsx26(
+        /* @__PURE__ */ jsx27(
           DiffModal,
           {
             isOpen: isDiffModalOpen,
@@ -8360,16 +9130,16 @@ ${file.content}`).join("\n\n---\n\n");
             }
           }
         ),
-        /* @__PURE__ */ jsx26(AboutModal, { isOpen: isAboutModalOpen, onClose: () => setIsAboutModalOpen(false) }),
-        /* @__PURE__ */ jsx26(TutorialModal, { isOpen: isTutorialModalOpen, onClose: () => setIsTutorialModalOpen(false) }),
-        /* @__PURE__ */ jsx26(FeedbackModal, { isOpen: isFeedbackModalOpen, onClose: () => setIsFeedbackModalOpen(false) }),
-        /* @__PURE__ */ jsx26(HistoryModal, { isOpen: isHistoryModalOpen, onClose: () => setIsHistoryModalOpen(false), onLoadSession: handleLoadSession }),
-        isLivePreviewActive && /* @__PURE__ */ jsx26("div", { className: "fixed inset-0 bg-black/80 z-40 p-8 flex items-center justify-center", children: /* @__PURE__ */ jsxs24("div", { className: "w-full h-full bg-gray-900 rounded-lg shadow-2xl border-2 border-indigo-500 flex flex-col", children: [
-          /* @__PURE__ */ jsxs24("header", { className: "flex-shrink-0 p-2 bg-gray-800 border-b border-gray-700 flex justify-between items-center", children: [
-            /* @__PURE__ */ jsx26("h3", { className: "text-lg font-semibold text-white", children: "Live Preview" }),
-            /* @__PURE__ */ jsx26("button", { onClick: toggleLivePreview, className: "px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-white text-sm", children: "Close" })
+        /* @__PURE__ */ jsx27(AboutModal, { isOpen: isAboutModalOpen, onClose: () => setIsAboutModalOpen(false) }),
+        /* @__PURE__ */ jsx27(TutorialModal, { isOpen: isTutorialModalOpen, onClose: () => setIsTutorialModalOpen(false) }),
+        /* @__PURE__ */ jsx27(FeedbackModal, { isOpen: isFeedbackModalOpen, onClose: () => setIsFeedbackModalOpen(false) }),
+        /* @__PURE__ */ jsx27(HistoryModal, { isOpen: isHistoryModalOpen, onClose: () => setIsHistoryModalOpen(false), onLoadSession: handleLoadSession }),
+        isLivePreviewActive && /* @__PURE__ */ jsx27("div", { className: "fixed inset-0 bg-black/80 z-40 p-8 flex items-center justify-center", children: /* @__PURE__ */ jsxs25("div", { className: "w-full h-full bg-gray-900 rounded-lg shadow-2xl border-2 border-indigo-500 flex flex-col", children: [
+          /* @__PURE__ */ jsxs25("header", { className: "flex-shrink-0 p-2 bg-gray-800 border-b border-gray-700 flex justify-between items-center", children: [
+            /* @__PURE__ */ jsx27("h3", { className: "text-lg font-semibold text-white", children: "Live Preview" }),
+            /* @__PURE__ */ jsx27("button", { onClick: toggleLivePreview, className: "px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-white text-sm", children: "Close" })
           ] }),
-          /* @__PURE__ */ jsx26("div", { className: "flex-grow min-h-0", children: /* @__PURE__ */ jsx26(LivePreviewPanel, { files }) })
+          /* @__PURE__ */ jsx27("div", { className: "flex-grow min-h-0", children: /* @__PURE__ */ jsx27(LivePreviewPanel, { files }) })
         ] }) })
       ]
     }
@@ -8378,12 +9148,12 @@ ${file.content}`).join("\n\n---\n\n");
 var App_default = App;
 
 // index.tsx
-import { jsx as jsx27 } from "react/jsx-runtime";
+import { jsx as jsx28 } from "react/jsx-runtime";
 var rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Could not find root element to mount to");
 }
 var root = ReactDOM.createRoot(rootElement);
 root.render(
-  /* @__PURE__ */ jsx27(React19.StrictMode, { children: /* @__PURE__ */ jsx27(App_default, {}) })
+  /* @__PURE__ */ jsx28(React20.StrictMode, { children: /* @__PURE__ */ jsx28(App_default, {}) })
 );
